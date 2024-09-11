@@ -3,7 +3,11 @@
 /build
 .gradle
 .idea
-
+.classpath
+bin/
+.settings
+.project
+.factorypath
 # Log file
 *.log
 
