@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS publications (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
     client_id INTEGER NOT NULL,
+    publication_type SMALLINT NOT NULL,
     FOREIGN KEY (client_id) REFERENCES clients (id)
 );
 CREATE TABLE IF NOT EXISTS events (
