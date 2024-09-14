@@ -1,7 +1,5 @@
 package com.service.coders.clients;
 
-import com.service.coders.interfaces.Followable;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Clients implements Followable {
+public class Clients {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;

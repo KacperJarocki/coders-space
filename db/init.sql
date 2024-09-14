@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS clients (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     client_type SMALLINT NOT NULL
 );
@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS reports (
     publication_id INTEGER,
     event_id INTEGER,
     comment_id INTEGER,
+    content TEXT,
     FOREIGN KEY (client_id) REFERENCES clients (id),
     FOREIGN KEY (publication_id) REFERENCES publications (id),
     FOREIGN KEY (event_id) REFERENCES events (id),
