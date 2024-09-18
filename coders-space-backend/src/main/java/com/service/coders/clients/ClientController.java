@@ -1,7 +1,12 @@
 package com.service.coders.clients;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,20 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
   @Autowired
   ClientService clientService;
+  Logger logger = Logger.getLogger(ClientController.class.getName());
 
   @GetMapping("/")
-  public String hello() {
-    return clientService.helloFromService();
+  public ResponseEntity getClients() {
+    logger.info("Getting clients");
+    return ResponseEntity.ok(clientService.getClients());
   }
 
-  @GetMapping("/save")
-  public void saveTestClient() {
-    Clients client = new Clients();
-    client.setName("Test Client");
-    client.setEmail("test");
-    client.setPassword("test");
-    client.setClient_type(ClientType.CLIENT);
+  @PostMapping("/")
+  public ResponseEntity saveTestClient(@RequestBody Clients client) {
+    if (client == null) {
+      return ResponseEntity.badRequest().build();
+    }
+    logger.info("Saving client with name: " + client.getName());
     clientService.saveClient(client);
+    return ResponseEntity.ok().build();
   }
 
 }
