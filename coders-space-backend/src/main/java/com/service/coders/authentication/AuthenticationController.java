@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import com.service.coders.clients.Clients;
 
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
   @Autowired
   AuthenticationService authenticationService;
@@ -23,6 +23,7 @@ public class AuthenticationController {
       return ResponseEntity.badRequest().build();
     }
     logger.info("Registering user with email: " + client.getEmail());
+    client.setClient_type("USER");
     authenticationService.register(client);
     return ResponseEntity.ok().build();
   }

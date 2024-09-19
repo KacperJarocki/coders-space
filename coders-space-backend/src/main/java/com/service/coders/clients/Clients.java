@@ -66,6 +66,23 @@ public class Clients implements UserDetails {
   public String getPassword() {
     return password;
   }
+
+  public void setClient_type(String type) {
+    switch (type) {
+      case "USER":
+        this.client_type = ClientType.USER;
+        break;
+      case "MODERATOR":
+        this.client_type = ClientType.MODERATOR;
+        break;
+      case "ADMIN":
+        this.client_type = ClientType.ADMIN;
+        break;
+      default:
+        this.client_type = ClientType.USER;
+        break;
+    }
+  }
 }
 
 enum ClientType {

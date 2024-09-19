@@ -6,10 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.service.coders.clients.ClientService;
 
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -27,7 +25,9 @@ public class SecurityConfig {
     return http
         .cors(cors -> cors.disable())
         .csrf(customizer -> customizer.disable())
-        .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+        .authorizeHttpRequests(request -> request
+            .requestMatchers("/api/auth/**").permitAll()
+            .anyRequest().authenticated())
         .httpBasic(Customizer.withDefaults())
         .sessionManagement(
             session -> session
@@ -39,7 +39,7 @@ public class SecurityConfig {
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
     authenticationProvider.setUserDetailsService(userDetailsService);
-    authenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+    authenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder(10));
     return authenticationProvider;
   }
 }
