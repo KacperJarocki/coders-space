@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Service
 public class ClientService implements UserDetailsService {
@@ -24,7 +25,14 @@ public class ClientService implements UserDetailsService {
     clientRepository.save(client);
   }
 
-  public Clients loadUserByUsername(String email) {
-    return clientRepository.findByEmail(email);
+  public Clients loadUserByUsername(String email) throws UsernameNotFoundException {
+    Clients client = clientRepository.findByEmail(email);
+    if (client == null) {
+      logger.error("User not found");
+      throw new UsernameNotFoundException("User not found");
+    } else {
+      logger.info("User found");
+      return client;
+    }
   }
 }

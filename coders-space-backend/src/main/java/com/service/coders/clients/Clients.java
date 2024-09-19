@@ -1,6 +1,7 @@
 package com.service.coders.clients;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,11 +12,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Clients implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,7 +59,7 @@ public class Clients implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority(client_type.name()));
+    return Collections.singleton(new SimpleGrantedAuthority(client_type.name()));
   }
 
   @Override
@@ -62,7 +69,7 @@ public class Clients implements UserDetails {
 }
 
 enum ClientType {
-  CLIENT,
+  USER,
   MODERATOR,
-  ADMINISTRATOR
+  ADMIN
 }
