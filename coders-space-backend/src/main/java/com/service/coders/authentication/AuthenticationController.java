@@ -27,4 +27,13 @@ public class AuthenticationController {
     authenticationService.register(client);
     return ResponseEntity.ok().build();
   }
+
+  @PostMapping("/login")
+  public ResponseEntity login(@RequestBody Clients client) {
+    if (client == null) {
+      return ResponseEntity.badRequest().build();
+    }
+    logger.info("Logging in user with email: " + client.getEmail());
+    return ResponseEntity.ok(authenticationService.verify(client));
+  }
 }
