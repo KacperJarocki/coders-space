@@ -18,7 +18,8 @@ public class AuthenticationService {
   ClientService clientService;
   @Autowired
   AuthenticationManager authenticationManager;
-
+  @Autowired
+  JwtService jwtService;
   BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
   public void register(Clients client) {
@@ -33,7 +34,9 @@ public class AuthenticationService {
         .authenticate(new UsernamePasswordAuthenticationToken(client.getEmail(), client.getPassword()));
     if (authentication.isAuthenticated()) {
       logger.info("User with email: " + client.getEmail() + " has been authenticated");
-      return "User has been";
+      logger.info("Geeenrating token for user with email: " + client.getEmail());
+      return jwtService.generateToken(client.getUsername());
+
     } else {
       logger.info("User with email: " + client.getEmail() + " has not been authenticated");
       return "User has not been";
