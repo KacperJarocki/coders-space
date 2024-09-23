@@ -1,0 +1,13 @@
+<div>
+  <form [formGroup]="signUpForm">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" />
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" />
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword" />
+    <button (click)="signUp()">Sign Up</button>
+  </form>
+</div>
+
+<a routerLink="/">Home</a>
