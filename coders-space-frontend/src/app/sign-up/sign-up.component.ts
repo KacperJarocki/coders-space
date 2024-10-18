@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 class Client {
   name?: string;
   email?: string;
@@ -22,6 +22,7 @@ class Client {
 export class SignUpComponent {
   private url: string = "http://backend.localhost/api/";
   private http = inject(HttpClient);
+  private router = inject(Router)
   signUpForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
@@ -39,7 +40,12 @@ export class SignUpComponent {
       console.log(client);
       this.http.post(
         this.url + "auth/register", client)
-        .subscribe((data) => { console.log(data) });
+        .subscribe({
+          next: (response) => {
+            /// have to add a success message
+            this.router.navigateByUrl('/login');
+          }, error: er => { console.log(er) }
+        });
     } else {
       alert('Password and Confirm Password do not match');
     }

@@ -1,6 +1,16 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Token } from '@angular/compiler';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+class Client {
+  email?: string;
+  password?: string;
+  constructor(email: string, password: string) {
+    this.email = email;
+    this.password = password;
+  }
+}
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -12,6 +22,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  private url: string = "http://backend.localhost/api/";
+  private http = inject(HttpClient);
   logInForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -19,6 +31,16 @@ export class LoginComponent {
   logIn() {
     const email = this.logInForm.get('email')?.value;
     const password = this.logInForm.get('password')?.value;
-    console.log("Should send data to server" + email + password);
+    const client = new Client(email ?? "", password ?? "");
+    this.http.post<{ token: string }>(
+      this.url + "auth/login", client)
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.token);
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+        }
+      });
   }
 }
