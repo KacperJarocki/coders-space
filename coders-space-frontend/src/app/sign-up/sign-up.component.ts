@@ -1,7 +1,17 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-
+import { Router, RouterLink } from '@angular/router';
+class Client {
+  name?: string;
+  email?: string;
+  password?: string;
+  constructor(name: string, email: string, password: string) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+  }
+}
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -10,6 +20,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
+  private url: string = "http://backend.localhost/api/";
+  private http = inject(HttpClient);
+  private router = inject(Router)
   signUpForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
@@ -23,7 +36,16 @@ export class SignUpComponent {
     const password = this.signUpForm.get('password')?.value;
     const confirmPassword = this.signUpForm.get('confirmPassword')?.value;
     if (this.matchPassword(password, confirmPassword)) {
-      console.log("Should send data to server");
+      const client = new Client(name ?? "", email ?? "", password ?? "");
+      console.log(client);
+      this.http.post(
+        this.url + "auth/register", client)
+        .subscribe({
+          next: (response) => {
+            /// have to add a success message
+            this.router.navigateByUrl('/login');
+          }, error: er => { console.log(er) }
+        });
     } else {
       alert('Password and Confirm Password do not match');
     }

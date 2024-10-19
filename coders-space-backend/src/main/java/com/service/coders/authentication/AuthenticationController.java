@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
 import com.service.coders.clients.Clients;
+import com.service.coders.responses.JwtResponse;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -34,6 +35,6 @@ public class AuthenticationController {
       return ResponseEntity.badRequest().build();
     }
     logger.info("Logging in user with email: " + client.getEmail());
-    return ResponseEntity.ok(authenticationService.verify(client));
+    return ResponseEntity.ok(new JwtResponse(authenticationService.verify(client)));
   }
 }
