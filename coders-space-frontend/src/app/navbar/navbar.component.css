@@ -1,0 +1,7 @@
+.navbar {
+  background-color: #2C3639; /* Ciemne tło nawigacji */
+  padding: 10px 20px; /* Padding na górze i dole, oraz z boków */
+  display: flex; /* Umożliwia elastyczne ułożenie elementów */
+  justify-content: flex-end; /* Ustawia zawartość po prawej stronie */
+}
+

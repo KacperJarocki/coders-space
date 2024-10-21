@@ -1,0 +1,9 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #2C3639; /* Ciemnozielone tło */
+  color: #DCD7C9; /* Kremowy tekst */
+  text-align: center;
+  padding: 10px 0;
+}

@@ -3,6 +3,7 @@ import { Token } from '@angular/compiler';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 class Client {
   email?: string;
   password?: string;
@@ -16,7 +17,8 @@ class Client {
   standalone: true,
   imports: [
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FooterComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
