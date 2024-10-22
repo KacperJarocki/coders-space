@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 class Client {
   email?: string;
@@ -26,6 +26,7 @@ class Client {
 export class LoginComponent {
   private url: string = "http://backend.localhost/api/";
   private http = inject(HttpClient);
+  private router = inject(Router)
   logInForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -39,6 +40,8 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
+          this.router.navigateByUrl("/")
+
         },
         error: (error) => {
           console.error('Login failed', error);
