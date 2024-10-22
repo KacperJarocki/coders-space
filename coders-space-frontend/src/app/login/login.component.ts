@@ -41,7 +41,6 @@ export class LoginComponent {
         next: (response) => {
           localStorage.setItem('token', response.token);
           this.router.navigateByUrl("/")
-
         },
         error: (error) => {
           console.error('Login failed', error);
