@@ -1,0 +1,11 @@
+@if(!isLoaded){
+<div> Sie nie pobrłalo sie</div>
+} @else {
+<section class="result">
+  <app-publication
+    *ngFor="let publication of PublicationList"
+    [publication] = "publication">
+  </app-publication>
+</section>
+}
+
