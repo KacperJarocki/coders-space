@@ -1,1 +1,6 @@
 <app-publication-list></app-publication-list>
+<button class="fixed-button" (click)="openModal()">+</button>
+@if(isModalVisible) {
+<app-publication-form (close)="closeModal()"></app-publication-form>
+}
+
