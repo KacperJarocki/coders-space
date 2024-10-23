@@ -1,0 +1,40 @@
+  .Publication {
+    background-color: #DCD7C9;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .Publication h1 {
+    color: #2C3639;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .Publication p {
+    color: #A27B5C;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+
+.Publication .meta {
+    background-color: #3F4E4F;
+    padding: 1px;
+    border-radius: 2px;
+    color: #DCD7C9;
+    font-size: 6px;
+    line-height: 1.5;
+  }
+
+  .Publication .meta span {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .Publication:hover {
+    background-color: #3F4E4F;
+    color: #DCD7C9;
+  }
