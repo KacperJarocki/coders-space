@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PublicationService } from '../publication.service';
+import { PublicationService } from '../services/publication.service';
 import { Publication } from '../interfaces/publication';
 import { PublicationComponent } from '../publication/publication.component';
 import { CommonModule } from '@angular/common';
