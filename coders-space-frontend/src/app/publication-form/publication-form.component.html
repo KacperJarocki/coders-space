@@ -7,8 +7,12 @@
     <label for="content">Content</label>
     <input type="content" id="content" formControlName="content" />
     <label for="publication_type">Publication Type</label>
-    <input type="publication_type" id="publication_type" formControlName="publication_type" />
-    <button (click)="createPublication()">Create Publication</button>
+      <select id="publication_type" formControlName="publication_type" class="custom-select">
+        <option value="ARTICLE">Article</option>
+        <option value="POST">Post</option>
+        <option value="QUESTION">Question</option>
+      </select>
+      <button (click)="createPublication()">Create Publication</button>
   </form>
   </div>
 </div>
