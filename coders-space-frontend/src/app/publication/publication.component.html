@@ -12,3 +12,6 @@
   </div>
 </section>
 
+@if(isModalVisible) {
+  <app-edit-publication [publication]="publication" (close)="closeEditPublication()"></app-edit-publication>
+}

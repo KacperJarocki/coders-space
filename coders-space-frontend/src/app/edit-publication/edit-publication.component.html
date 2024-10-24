@@ -1,0 +1,24 @@
+<div class="modal" >
+  <div class="modal-content">
+    <span class="close-button" (click)="closeEditForm()">&times;</span>
+    <h2>Edit Publication</h2>
+
+    <form [formGroup]="editPublicationForm">
+      <label for="edit-title">Title</label>
+      <input type="text" id="edit-title" formControlName="title" />
+
+      <label for="edit-content">Content</label>
+      <input type="text" id="edit-content" formControlName="content"/>
+
+      <label for="edit-publication_type">Publication Type</label>
+      <select id="edit-publication_type" formControlName="publication_type" class="custom-select">
+        <option value="" disabled>Select a type</option>
+        <option value="News">News</option>
+        <option value="Blog">Blog</option>
+        <option value="Article">Article</option>
+      </select>
+
+      <button type="button" (click)="updatePublication()">Save Changes</button>
+    </form>
+  </div>
+</div>

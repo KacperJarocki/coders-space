@@ -18,4 +18,7 @@ export class PublicationService {
     console.log('Publication will be deleted service');
     return this.http.delete(this.url, { body: publication })
   }
+  public updatePublication(publication: Publication) {
+    return this.http.put(this.url, publication)
+  }
 }
