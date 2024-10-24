@@ -27,12 +27,15 @@ public class PublicationService {
     return publication;
   }
 
-  public void deletePublications(Publications publications) {
+  public Boolean deletePublications(Publications publications) {
     try {
       logger.info("Deleting publication" + publications);
       repository.deleteById(publications.getId());
+      return true;
     } catch (Exception e) {
       logger.error("Error deleting publication" + e);
+      return false;
+
     }
   }
 
