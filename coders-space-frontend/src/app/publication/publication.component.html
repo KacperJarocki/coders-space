@@ -6,4 +6,9 @@
     <span><strong>Client ID:</strong> {{publication.client_id}}</span> <!-- Client ID -->
     <span><strong>Posted on:</strong> {{publication.post_created}}</span> <!-- Post Created -->
   </div>
+  <div class="actions">
+    <button class="edit-button" (click)="editPublication()">Edit</button>
+    <button class="remove-button" (click)="removePublication()">Remove</button>
+  </div>
 </section>
+

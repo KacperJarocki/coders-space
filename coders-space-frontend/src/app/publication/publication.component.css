@@ -38,3 +38,31 @@
     background-color: #3F4E4F;
     color: #DCD7C9;
   }
+
+.actions {
+  margin-top: 10px;
+}
+
+.edit-button, .remove-button {
+  background-color: #2C3639;
+  color: #DCD7C9;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover, .remove-button:hover {
+  background-color: #A27B5C;
+}
+
+.remove-button {
+  background-color: #E74C3C;
+}
+
+.remove-button:hover {
+  background-color: #C0392B;
+}

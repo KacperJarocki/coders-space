@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Publication } from '../interfaces/publication';
-import { JwtServiceService } from './jwt-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +13,9 @@ export class PublicationService {
   }
   public createPublication(publication: Publication) {
     return this.http.post(this.url, publication)
+  }
+  public deletePublication(publication: Publication) {
+    console.log('Publication will be deleted service');
+    return this.http.delete(this.url, { body: publication })
   }
 }

@@ -27,4 +27,16 @@ export class PublicationListComponent {
       },
     });
   }
+  refresh() {
+    this.publicationService.getPublications().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.PublicationList = data;
+        this.isLoaded = true;
+      },
+      error: (error) => {
+        console.error('There was an error!', error);
+      },
+    });
+  }
 }
