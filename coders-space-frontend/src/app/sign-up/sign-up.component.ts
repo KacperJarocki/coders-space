@@ -2,16 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-class Client {
-  name?: string;
-  email?: string;
-  password?: string;
-  constructor(name: string, email: string, password: string) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-}
+import { Client } from '../interfaces/client';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -36,13 +27,18 @@ export class SignUpComponent {
     const password = this.signUpForm.get('password')?.value;
     const confirmPassword = this.signUpForm.get('confirmPassword')?.value;
     if (this.matchPassword(password, confirmPassword)) {
-      const client = new Client(name ?? "", email ?? "", password ?? "");
-      console.log(client);
+      const client: Client = {
+        id: 0,
+        name: name || '',
+        email: email || '',
+        password: password || '',
+        client_type: ''
+      };
       this.http.post(
         this.url + "auth/register", client)
         .subscribe({
           next: (response) => {
-            /// have to add a success message
+            alert('Account created successfully');
             this.router.navigateByUrl('/login');
           }, error: er => { console.log(er) }
         });

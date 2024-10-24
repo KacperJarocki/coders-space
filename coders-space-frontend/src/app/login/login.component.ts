@@ -1,17 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Token } from '@angular/compiler';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
-class Client {
-  email?: string;
-  password?: string;
-  constructor(email: string, password: string) {
-    this.email = email;
-    this.password = password;
-  }
-}
+import { Client } from '../interfaces/client';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -34,7 +27,13 @@ export class LoginComponent {
   logIn() {
     const email = this.logInForm.get('email')?.value;
     const password = this.logInForm.get('password')?.value;
-    const client = new Client(email ?? "", password ?? "");
+    const client: Client = {
+      id: 0,
+      name: '',
+      email: email || '',
+      password: password || '',
+      client_type: ''
+    };
     this.http.post<{ token: string }>(
       this.url + "auth/login", client)
       .subscribe({
