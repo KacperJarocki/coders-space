@@ -1,13 +1,47 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Publication } from '../interfaces/publication';
+import { PublicationService } from '../services/publication.service';
+import { EditPublicationComponent } from '../edit-publication/edit-publication.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-publication',
   standalone: true,
-  imports: [],
+  imports: [EditPublicationComponent, CommonModule],
   templateUrl: './publication.component.html',
-  styleUrl: './publication.component.css'
+  styleUrls: ['./publication.component.css']
 })
 export class PublicationComponent {
   @Input() publication!: Publication;
+  @Output() refreshList = new EventEmitter<void>();
+  isModalVisible: boolean = false;
+
+  constructor(private publicationService: PublicationService) { }
+
+  editPublication(): void {
+    this.isModalVisible = true;
+    console.log('Opening edit publication modal');
+  }
+
+  closeEditPublication(): void {
+    this.isModalVisible = false;
+    console.log('Closing edit publication modal');
+  }
+  refresh(): void {
+    this.refreshList.emit();
+  }
+  public removePublication() {
+    if (confirm('Are you sure you want to delete this publication?')) {
+      this.publicationService.deletePublication(this.publication).subscribe({
+        next: (response: any) => {
+          console.log('Publication deleted', response);
+          this.refreshList.emit();
+        },
+        error: (error: any) => {
+          console.error('There was an error!', error);
+        },
+      });
+    }
+  }
 }
+

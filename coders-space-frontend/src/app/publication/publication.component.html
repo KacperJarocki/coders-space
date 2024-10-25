@@ -1,4 +1,22 @@
 <section class="Publication">
-  <h1>{{publication.content}}</h1>;
-  <p>{{publication.publication_type}}</p>
+  <h1>{{ publication.title }}</h1>
+  <p>{{ publication.content }}</p>
+  <div class="meta">
+    <span><strong>Type:</strong> {{ publication.publication_type }}</span>
+    <span><strong>Client ID:</strong> {{ publication.client_id }}</span>
+    <span><strong>Posted on:</strong> {{ publication.post_created }}</span>
+  </div>
+  <div class="actions">
+    <button class="edit-button" (click)="editPublication()">Edit</button>
+    <button class="remove-button" (click)="removePublication()">Remove</button>
+  </div>
 </section>
+@if(isModalVisible){
+<app-edit-publication
+    [publication]="publication"
+  (close)="closeEditPublication()"
+(refreshList)="refresh()">
+</app-edit-publication>
+}
+
+

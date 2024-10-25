@@ -33,9 +33,10 @@ public class AuthenticationService {
     Authentication authentication = authenticationManager
         .authenticate(new UsernamePasswordAuthenticationToken(client.getEmail(), client.getPassword()));
     if (authentication.isAuthenticated()) {
+      client = clientService.loadUserByUsername(client.getEmail());
       logger.info("User with email: " + client.getEmail() + " has been authenticated");
-      logger.info("Geeenrating token for user with email: " + client.getEmail());
-      return jwtService.generateToken(client.getUsername());
+      logger.info("Genrating token for user with email: " + client.getEmail());
+      return jwtService.generateToken(client);
 
     } else {
       logger.info("User with email: " + client.getEmail() + " has not been authenticated");

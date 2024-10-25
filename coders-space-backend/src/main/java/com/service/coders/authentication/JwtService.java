@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+
+import com.service.coders.clients.Clients;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Jwts.SIG;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,12 +18,15 @@ public class JwtService {
 
   SecretKey key = getSecret();
 
-  public String generateToken(String username) {
+  public String generateToken(Clients client) {
     Map<String, Object> claims = new HashMap<>();
+    claims.put("email", client.getEmail());
+    claims.put("id", client.getId());
+    claims.put("role", client.getClient_type());
+    claims.put("name", client.getName());
     return Jwts.builder()
         .claims()
         .add(claims)
-        .subject(username)
         .issuedAt(new Date(System.currentTimeMillis()))
         .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 30))
         .and()

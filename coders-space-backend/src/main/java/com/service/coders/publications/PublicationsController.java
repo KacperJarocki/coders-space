@@ -54,8 +54,9 @@ public class PublicationsController {
 
   @DeleteMapping
   public ResponseEntity deletePublications(@RequestBody Publications delete) {
-    Publications publications = publicationService.updatePublications(delete);
-    if (publications == null) {
+    Boolean wasDeleted = publicationService.deletePublications(delete);
+    if (wasDeleted == false) {
+
       return ResponseEntity.notFound().build();
     } else {
       return ResponseEntity.status(200).build();

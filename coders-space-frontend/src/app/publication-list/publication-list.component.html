@@ -4,8 +4,13 @@
 <section class="result">
   <app-publication
     *ngFor="let publication of PublicationList"
-    [publication] = "publication">
+    [publication] = "publication"
+  (refreshList)="refresh()">
   </app-publication>
 </section>
+}
+<button class="fixed-button" (click)="openModal()">+</button>
+@if(isModalVisible) {
+<app-publication-form (close)="closeModal()" (refreshList)="refresh()"></app-publication-form>
 }
 
