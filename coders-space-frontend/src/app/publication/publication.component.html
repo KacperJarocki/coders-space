@@ -1,10 +1,10 @@
 <section class="Publication">
-  <h1>{{publication.title}}</h1>
-  <p>{{publication.content}}</p>
+  <h1>{{ publication.title }}</h1>
+  <p>{{ publication.content }}</p>
   <div class="meta">
-    <span><strong>Type:</strong> {{publication.publication_type}}</span> <!-- Publication Type -->
-    <span><strong>Client ID:</strong> {{publication.client_id}}</span> <!-- Client ID -->
-    <span><strong>Posted on:</strong> {{publication.post_created}}</span> <!-- Post Created -->
+    <span><strong>Type:</strong> {{ publication.publication_type }}</span>
+    <span><strong>Client ID:</strong> {{ publication.client_id }}</span>
+    <span><strong>Posted on:</strong> {{ publication.post_created }}</span>
   </div>
   <div class="actions">
     <button class="edit-button" (click)="editPublication()">Edit</button>
@@ -12,6 +12,9 @@
   </div>
 </section>
 
-@if(isModalVisible) {
-  <app-edit-publication [publication]="publication" (close)="closeEditPublication()"></app-edit-publication>
-}
+<app-edit-publication
+  *ngIf="isModalVisible"
+  [publication]="publication"
+  (close)="closeEditPublication()">
+</app-edit-publication>
+

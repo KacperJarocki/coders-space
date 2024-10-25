@@ -8,7 +8,7 @@ import { Publication } from '../interfaces/publication';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './edit-publication.component.html',
-  styleUrl: './edit-publication.component.css'
+  styleUrls: ['./edit-publication.component.css']
 })
 export class EditPublicationComponent {
   @Input() publication!: Publication;
@@ -25,6 +25,7 @@ export class EditPublicationComponent {
       publication_type: [''],
     });
   }
+
   ngOnInit(): void {
     if (this.publication) {
       this.openEditForm(this.publication);
@@ -32,14 +33,13 @@ export class EditPublicationComponent {
   }
 
   public openEditForm(publication: Publication): void {
-    console.log('Opening edit form');
-    console.log(publication);
     this.editPublicationForm.patchValue({
       title: publication.title,
       content: publication.content,
       publication_type: publication.publication_type,
     });
   }
+
   closeEditForm(): void {
     this.close.emit();
   }
@@ -54,7 +54,7 @@ export class EditPublicationComponent {
       this.publicationService.updatePublication(updatedPublication).subscribe({
         next: (response: any) => {
           console.log('Publication updated', response);
-          this.closeEditForm(); // Close the modal after updating
+          this.closeEditForm();
         },
         error: (error: any) => {
           console.error('There was an error updating the publication!', error);
@@ -63,3 +63,4 @@ export class EditPublicationComponent {
     }
   }
 }
+
