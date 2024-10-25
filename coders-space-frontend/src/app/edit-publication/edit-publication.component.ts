@@ -13,6 +13,7 @@ import { Publication } from '../interfaces/publication';
 export class EditPublicationComponent {
   @Input() publication!: Publication;
   @Output() close = new EventEmitter<void>();
+  @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   editPublicationForm: FormGroup;
 
   constructor(
@@ -43,7 +44,9 @@ export class EditPublicationComponent {
   closeEditForm(): void {
     this.close.emit();
   }
-
+  refresh(): void {
+    this.refreshList.emit();
+  }
   public updatePublication(): void {
     if (this.editPublicationForm.valid) {
       const updatedPublication = {
@@ -55,6 +58,7 @@ export class EditPublicationComponent {
         next: (response: any) => {
           console.log('Publication updated', response);
           this.closeEditForm();
+          this.refresh();
         },
         error: (error: any) => {
           console.error('There was an error updating the publication!', error);

@@ -21,9 +21,13 @@ export class PublicationFormComponent {
     publication_type: new FormControl('POST')
   })
   @Output() close = new EventEmitter<void>();
+  @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
 
   closeForm(): void {
     this.close.emit();
+  }
+  refresh(): void {
+    this.refreshList.emit();
   }
   createPublication(): void {
     const client_id = this.jwtService.getClientId();
@@ -39,6 +43,7 @@ export class PublicationFormComponent {
     this.publicationService.createPublication(publication).subscribe({
       next: (response) => {
         alert('Publication created successfully');
+        this.refresh();
         this.closeForm();
       },
       error: (error) => {

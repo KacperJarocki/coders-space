@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PublicationComponent {
   @Input() publication!: Publication;
-  @Output() publicationsChanged = new EventEmitter<void>();
+  @Output() refreshList = new EventEmitter<void>();
   isModalVisible: boolean = false;
 
   constructor(private publicationService: PublicationService) { }
@@ -27,13 +27,15 @@ export class PublicationComponent {
     this.isModalVisible = false;
     console.log('Closing edit publication modal');
   }
-
+  refresh(): void {
+    this.refreshList.emit();
+  }
   public removePublication() {
     if (confirm('Are you sure you want to delete this publication?')) {
       this.publicationService.deletePublication(this.publication).subscribe({
         next: (response: any) => {
           console.log('Publication deleted', response);
-          this.publicationsChanged.emit();
+          this.refreshList.emit();
         },
         error: (error: any) => {
           console.error('There was an error!', error);

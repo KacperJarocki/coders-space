@@ -11,14 +11,6 @@ import { PublicationFormComponent } from '../publication-form/publication-form.c
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  isModalVisible: boolean = false;
 
-  openModal(): void {
-    this.isModalVisible = true;
-  }
-
-  closeModal(): void {
-    this.isModalVisible = false;
-  }
 
 }

@@ -11,10 +11,12 @@
     <button class="remove-button" (click)="removePublication()">Remove</button>
   </div>
 </section>
-
+@if(isModalVisible){
 <app-edit-publication
-  *ngIf="isModalVisible"
-  [publication]="publication"
-  (close)="closeEditPublication()">
+    [publication]="publication"
+  (close)="closeEditPublication()"
+(refreshList)="refresh()">
 </app-edit-publication>
+}
+
 
