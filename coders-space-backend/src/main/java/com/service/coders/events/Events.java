@@ -1,5 +1,7 @@
 package com.service.coders.events;
 
+import java.time.LocalDateTime;
+
 import com.service.coders.interfaces.Followable;
 import com.service.coders.interfaces.Reportable;
 
@@ -16,6 +18,7 @@ public class Events {
   int id;
   String name;
   String content;
-  String date;
+  LocalDateTime date;
+  LocalDateTime created_at;
   int client_id;
 }

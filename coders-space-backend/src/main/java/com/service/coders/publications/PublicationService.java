@@ -41,7 +41,6 @@ public class PublicationService {
 
   public Publications updatePublications(Publications publications) {
     Publications publication;
-    publications.setPost_created(LocalDateTime.now());
     try {
       publication = repository.save(publications);
     } catch (Exception e) {
