@@ -3,7 +3,7 @@
 }@else if(listState.state ==='success'){
 <section class="result">
   @for(event of listState.results;track event.id){
-  <app-event [event]="event"></app-event>
+  <app-event [event]="event" (refreshList) ="refreshEvents()"></app-event>
   }
 </section>
 }@else if(listState.state ==='error'){
