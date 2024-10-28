@@ -22,7 +22,7 @@ public class EventService {
             logger.info("Creating event" + events);
             event = repository.save(events);
         } catch (Exception e) {
-            logger.error("Error creating publication" + e);
+            logger.error("Error creating event" + e);
             event = null;
         }
         return event;
@@ -30,11 +30,11 @@ public class EventService {
 
     public Boolean delete(Events event) {
         try {
-            logger.info("Deleting publication" + event);
+            logger.info("Deleting event" + event);
             repository.deleteById(event.getId());
             return true;
         } catch (Exception e) {
-            logger.error("Error deleting publication" + e);
+            logger.error("Error event publication" + e);
             return false;
 
         }
@@ -44,6 +44,7 @@ public class EventService {
         Events event;
         try {
             event = repository.save(events);
+            logger.info("updated event" + event);
         } catch (Exception e) {
             event = null;
         }
