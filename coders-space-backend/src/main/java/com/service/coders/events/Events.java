@@ -1,9 +1,13 @@
 package com.service.coders.events;
 
+import java.time.LocalDateTime;
+
 import com.service.coders.interfaces.Followable;
 import com.service.coders.interfaces.Reportable;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +17,11 @@ import lombok.Setter;
 @Setter
 public class Events {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
   String name;
   String content;
-  String date;
+  LocalDateTime date;
+  LocalDateTime created_at;
   int client_id;
 }

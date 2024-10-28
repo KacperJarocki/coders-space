@@ -1,0 +1,17 @@
+<section class="event">
+  <h1>{{ event.name }}</h1>
+  <p>{{ event.content }}</p>
+  <div class="meta">
+    <span><strong>Date:</strong> {{ event.date | date:'medium' }}</span> <!-- Display formatted date -->
+    <span><strong>Created At:</strong> {{ event.created_at | date:'medium' }}</span> <!-- Display created_at date -->
+    <span><strong>Client ID:</strong> {{ event.client_id }}</span> <!-- Display client ID -->
+  </div>
+  <div class="actions">
+    <button class="edit-button" (click)="editEvent()">Edit</button>
+    <button class="remove-button" (click)="removeEvent()">Remove</button>
+  </div>
+</section>
+
+@if(isModalVisible){
+<app-edit-event (close) = "closeEditEvent(); emitRefresh()" [event]="event"></app-edit-event>
+}

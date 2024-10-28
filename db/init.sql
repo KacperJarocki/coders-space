@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS events (
     name VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     date TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     client_id INTEGER NOT NULL,
     FOREIGN KEY (client_id) REFERENCES clients (id)
 );

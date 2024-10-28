@@ -1,0 +1,20 @@
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeForm()">&times;</span>
+    <h2>Create Event</h2>
+
+    <form [formGroup]="eventForm">
+      <label for="name">Event Name</label>
+      <input type="text" id="name" formControlName="name" />
+
+      <label for="content">Content</label>
+      <input type="text" id="content" formControlName="content" />
+
+        <label for="datetime">Event Date & Time</label>
+      <input type="datetime-local" id="datetime" formControlName="date" />
+
+      <button (click)="createEvent()">Create Event</button>
+    </form>
+  </div>
+</div>
+

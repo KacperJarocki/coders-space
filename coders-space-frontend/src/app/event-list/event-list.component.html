@@ -1,0 +1,15 @@
+@if(listState.state==='loading'){
+<p>Loading</p>
+}@else if(listState.state ==='success'){
+<section class="result">
+  @for(event of listState.results;track event.id){
+  <app-event [event]="event" (refreshList) ="refreshEvents()"></app-event>
+  }
+</section>
+}@else if(listState.state ==='error'){
+<p>{{listState.error.message}}</p>
+}
+<button class="fixed-button" (click) = "openModal()">+</button>
+@if(isModalVisible){
+  <app-event-form (close)="closeModal()" (refreshList)="refreshEvents()"></app-event-form>
+}
