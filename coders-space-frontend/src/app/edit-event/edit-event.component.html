@@ -1,0 +1,20 @@
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeEditForm()">&times;</span>
+    <h2>Edit Event</h2>
+
+    <form [formGroup]="editEventForm">
+      <label for="name">Event Name</label>
+      <input type="text" id="name" formControlName="name" />
+
+      <label for="content">Content</label>
+      <textarea id="content" formControlName="content"></textarea>
+
+      <label for="date">Date & Time</label>
+      <input type="datetime-local" id="date" formControlName="date" />
+
+      <button type="button" (click)="updateEvent()">Save Changes</button>
+    </form>
+  </div>
+</div>
+

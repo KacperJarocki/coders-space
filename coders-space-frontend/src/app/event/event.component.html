@@ -12,3 +12,6 @@
   </div>
 </section>
 
+@if(isModalVisible){
+<app-edit-event (close) = "closeEditEvent(); emitRefresh()" [event]="event"></app-edit-event>
+}
