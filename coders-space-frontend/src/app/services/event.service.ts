@@ -11,4 +11,13 @@ export class EventService {
   public getEvents() {
     return this.http.get<Event[]>(this.url);
   }
+  public createEvent(event: Event) {
+    return this.http.post<Event>(this.url, event);
+  }
+  public updateEvent(event: Event) {
+    return this.http.put<Event>(this.url, event);
+  }
+  public deleteEvent(event: Event) {
+    return this.http.delete(this.url, { body: event });
+  }
 }
