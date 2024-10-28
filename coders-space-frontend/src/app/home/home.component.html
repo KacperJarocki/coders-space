@@ -1,3 +1,7 @@
+<app-exploler (changeFeed)= "changeView()"></app-exploler>
+@if(showPublicationList){
 <app-publication-list></app-publication-list>
-
+}@else{
+<app-event-list></app-event-list>
+}
 
