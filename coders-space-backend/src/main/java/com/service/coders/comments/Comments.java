@@ -13,6 +13,6 @@ public class Comments {
   int id;
   String content;
   int client_id;
-  int publication_id;
-  int event_id;
+  Integer publication_id;
+  Integer event_id;
 }
