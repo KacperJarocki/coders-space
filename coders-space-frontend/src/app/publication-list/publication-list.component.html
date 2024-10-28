@@ -2,11 +2,11 @@
 <div> Sie nie pobrłalo sie</div>
 } @else {
 <section class="result">
-  <app-publication
-    *ngFor="let publication of PublicationList"
-    [publication] = "publication"
-  (refreshList)="refresh()">
+  @for(publication of PublicationList;track publication.id){
+  <app-publication [publication] = "publication"
+    (refreshList)="refresh()">
   </app-publication>
+  }
 </section>
 }
 <button class="fixed-button" (click)="openModal()">+</button>
