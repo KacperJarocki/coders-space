@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/comments")
 public class CommentController {
@@ -15,6 +17,22 @@ public class CommentController {
         return ResponseEntity.ok(commentService.retrieveAll());
     }
     @PutMapping
+    public ResponseEntity retriveCommentsOfPublicationOrEvent(@RequestBody Comments comment){
+        List<Comments> comments;
+        if(comment.event_id != null){
+            comments = commentService.retriveByEventId(comment);
+            if(comments!=null)
+                return ResponseEntity.ok(comments);
+        } else if (comment.publication_id != null) {
+            comments = commentService.retriveByPublicationId(comment);
+            if (comments!=null)
+                return ResponseEntity.ok(comments);
+        } else {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        return ResponseEntity.unprocessableEntity().build();
+    }
+    @PatchMapping
     public ResponseEntity update(@RequestBody Comments comment){
         Comments updatedComment = commentService.update(comment);
         if(updatedComment != null){

@@ -15,6 +15,20 @@ public class CommentService {
     public List<Comments> retrieveAll() {
         return commentRepository.findAll();
     }
+    public List<Comments> retriveByPublicationId(Comments comment){
+        try{
+            return commentRepository.findCommentsByPublication_Id(comment.getPublication_id());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public List<Comments> retriveByEventId(Comments comment){
+        try{
+            return commentRepository.findCommentsByEvent_Id(comment.getEvent_id());
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public Comments create(Comments comment) {
         Comments com;
         try{
