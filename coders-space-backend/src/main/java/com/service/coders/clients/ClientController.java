@@ -16,7 +16,6 @@ public class ClientController {
   @Autowired
   ClientService clientService;
   Logger logger = Logger.getLogger(ClientController.class.getName());
-
   @GetMapping("/")
   public ResponseEntity getClients() {
     logger.info("Getting clients");
