@@ -17,23 +17,23 @@ public class CommentController {
     return ResponseEntity.ok(commentService.retrieveAll());
   }
 
-  // @PutMapping
-  // public ResponseEntity retriveCommentsOfPublicationOrEvent(@RequestBody
-  // Comments comment){
-  // List<Comments> comments;
-  // if(comment.event_id != null){
-  // comments = commentService.retriveByEventId(comment);
-  // if(comments!=null)
-  // return ResponseEntity.ok(comments);
-  // } else if (comment.publication_id != null) {
-  // comments = commentService.retriveByPublicationId(comment);
-  // if (comments!=null)
-  // return ResponseEntity.ok(comments);
-  // } else {
-  // return ResponseEntity.unprocessableEntity().build();
-  // }
-  // return ResponseEntity.unprocessableEntity().build();
-  // }
+  @PutMapping
+  public ResponseEntity retriveCommentsOfPublicationOrEvent(@RequestBody Comments comment) {
+    List<Comments> comments;
+    if (comment.eventId != null) {
+      comments = commentService.retriveByEventId(comment);
+      if (comments != null)
+        return ResponseEntity.ok(comments);
+    } else if (comment.publicationId != null) {
+      comments = commentService.retriveByPublicationId(comment);
+      if (comments != null)
+        return ResponseEntity.ok(comments);
+    } else {
+      return ResponseEntity.unprocessableEntity().build();
+    }
+    return ResponseEntity.unprocessableEntity().build();
+  }
+
   @PatchMapping
   public ResponseEntity update(@RequestBody Comments comment) {
     Comments updatedComment = commentService.update(comment);

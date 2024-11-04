@@ -7,7 +7,8 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comments, Integer> {
-  // public List<Comments> findCommentsByPublication_Id(int publication_id);
+  public List<Comments> findCommentsByPublicationId(int publicationId);
+
   //
-  // List<Comments> findCommentsByEvent_Id(Integer publicationId);
+  public List<Comments> findCommentsByEventId(Integer publicationId);
 }

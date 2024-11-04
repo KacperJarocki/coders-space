@@ -1,9 +1,6 @@
 package com.service.coders.comments;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +12,10 @@ public class Comments {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
   String content;
-  int client_id;
-  Integer publication_id;
-  Integer event_id;
+  @Column(name ="client_id")
+  int clientId;
+  @Column(name = "publication_id")
+  Integer publicationId;
+  @Column(name = "event_id")
+  Integer eventId;
 }

@@ -17,21 +17,24 @@ public class CommentService {
     return commentRepository.findAll();
   }
 
-  // public List<Comments> retriveByPublicationId(Comments comment){
-  // try{
-  // return
-  // commentRepository.findCommentsByPublication_Id(comment.getPublication_id());
-  // } catch (Exception e) {
-  // return null;
-  // }
-  // }
-  // public List<Comments> retriveByEventId(Comments comment){
-  // try{
-  // return commentRepository.findCommentsByEvent_Id(comment.getEvent_id());
-  // } catch (Exception e) {
-  // return null;
-  // }
-  // }
+  public List<Comments> retriveByPublicationId(Comments comment) {
+    logger.info("retriving comments for publication");
+    try {
+      return commentRepository.findCommentsByPublicationId(comment.getPublicationId());
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  public List<Comments> retriveByEventId(Comments comment) {
+    logger.info("retriving comments for event");
+    try {
+      return commentRepository.findCommentsByEventId(comment.getEventId());
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
   public Comments create(Comments comment) {
     Comments com;
     try {
