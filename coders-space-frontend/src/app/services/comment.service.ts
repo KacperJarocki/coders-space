@@ -12,6 +12,6 @@ export class CommentService {
   private url = "http://backend.localhost/api/v1/comments";
 
   public getComments(comment: Comment) {
-    return this.http.put<Comment[]>(this.url, { body: comment });
+    return this.http.put<Comment[]>(this.url, comment);
   }
 }

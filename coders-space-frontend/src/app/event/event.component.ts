@@ -3,10 +3,11 @@ import { Event } from '../interfaces/event';
 import { CommonModule } from '@angular/common';
 import { EventService } from '../services/event.service';
 import { EditEventComponent } from '../edit-event/edit-event.component';
+import { CommentListComponent } from '../comment/comment-list/comment-list.component';
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, EditEventComponent],
+  imports: [CommonModule, EditEventComponent, CommentListComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })
@@ -15,6 +16,7 @@ export class EventComponent {
   @Input() event!: Event;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   isModalVisible: boolean = false;
+  commentsVisible: boolean = false;
   emitRefresh(): void {
     this.refreshList.emit();
   }
@@ -25,6 +27,11 @@ export class EventComponent {
   closeEditEvent(): void {
     console.log('Closing edit event modal');
     this.isModalVisible = false
+  }
+  showComments(): void {
+    console.log('Showing comments');
+    this.commentsVisible = !this.commentsVisible;
+
   }
   removeEvent(): void {
     console.log("deleting event");

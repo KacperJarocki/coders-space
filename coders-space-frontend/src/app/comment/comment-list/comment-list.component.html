@@ -1,1 +1,11 @@
-<p>comment-list works!</p>
+@if(listState.state==='loading'){
+<p>Loading</p>
+}@else if(listState.state ==='success'){
+<section class="result">
+  @for(comment of listState.results;track comment.id){
+  <app-comment [comment]="comment" (refreshList) ="refreshComments()"></app-comment>
+  }
+</section>
+}@else if(listState.state ==='error'){
+<p>{{listState.error.message}}</p>
+}

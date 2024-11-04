@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Comment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-comment',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './comment.component.css'
 })
 export class CommentComponent {
-
+  @Input() comment!: Comment;
 }
