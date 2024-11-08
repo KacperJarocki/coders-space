@@ -17,4 +17,7 @@ export class CommentService {
   public postComment(comment: Comment) {
     return this.http.post<Comment>(this.url, comment);
   }
+  public deleteComment(comment: Comment) {
+    return this.http.delete<Comment>(this.url, { body: comment });
+  }
 }

@@ -18,6 +18,7 @@ export class CommentFormComponent {
   @Input() commentData: Comment | null = null;
   @Input() Event: Event | null = null;
   @Input() Publication: Publication | null = null;
+  @Input() msg: string = "Add comment";
   commentForm!: FormGroup;
   isVisible: boolean = false;
   constructor(private fb: FormBuilder, private jwtService: JwtServiceService, private commentService: CommentService) { }
@@ -38,20 +39,21 @@ export class CommentFormComponent {
   onSubmit(): void {
     if (this.commentForm.valid) {
       const comment: Comment = {
-        id: 0,
+        id: this.commentData?.id ?? 0,
         content: this.commentForm.value.content,
         clientId: this.jwtService.getClientId() || -1,
-        eventId: this.Event?.id ?? null,
-        publicationId: this.Publication?.id ?? null,
+        eventId: this.Event?.id ?? this.commentData?.eventId ?? null,
+        publicationId: this.Publication?.id ?? this.commentData?.publicationId ?? null
 
       }
       this.commentService.postComment(comment).subscribe({
-        next: () => {
+        next: (response) => {
           console.log('Comment posted');
+          console.log(response);
         }
       })
 
-      this.closePopup(); // Zamykamy pop-up po zatwierdzeniu formularza
+      this.closePopup();
     }
   }
 }

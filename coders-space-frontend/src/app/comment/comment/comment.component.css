@@ -1,21 +1,47 @@
 .comment-card {
-  width: 100%; /* Zajmuje pełną szerokość rodzica */
+  background-color: #F9F9F9;
+  border: 1px solid #E0E0E0;
   padding: 15px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease; /* Efekt hover */
-}
-
-.comment-card:hover {
-  transform: scale(1.02); /* Delikatne powiększenie przy najechaniu */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Zwiększony cień */
+  margin-bottom: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comment-content {
   font-size: 16px;
-  line-height: 1.5;
-  color: #333;
+  color: #2C3639;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end; /* Przyciski są wyrównane do prawej */
+}
+
+/* Styl przycisków "Edit" i "Remove" */
+.comment-card .edit-button,
+.comment-card .remove-button {
+  background-color: #2C3639;
+  color: #DCD7C9;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* Stylizacja przycisków na hover */
+.comment-card .edit-button:hover {
+  background-color: #A27B5C;
+}
+
+.comment-card .remove-button {
+  background-color: #E74C3C;
+}
+
+.comment-card .remove-button:hover {
+  background-color: #C0392B;
 }
