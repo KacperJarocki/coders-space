@@ -1,1 +1,26 @@
-<p>comment-form works!</p>
+<div class="popup-overlay" *ngIf="isVisible" (click)="closePopup()">
+  <div class="popup-container" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+        Treść komentarza:
+      <button class="close-btn" (click)="closePopup()">X</button>
+    </div>
+    <div class="popup-content">
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="content"></label>
+          <textarea id="content" formControlName="content"></textarea>
+          <div *ngIf="commentForm.get('content')?.errors?.['required'] && commentForm.get('content')?.touched">
+            <small>Treść jest wymagana.</small>
+          </div>
+          <div *ngIf="commentForm.get('content')?.errors?.['minlength'] && commentForm.get('content')?.touched">
+            <small>Treść musi mieć przynajmniej 1 znak.</small>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="commentForm.invalid">Zapisz</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button (click)="openPopup()">{{this.msg}}</button>

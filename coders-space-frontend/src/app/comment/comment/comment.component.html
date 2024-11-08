@@ -1,2 +1,9 @@
-<p>{{comment.content}}</p>
-<p>{{comment.eventId}}</p>
+
+<div class="comment-card">
+  <p class="comment-content">{{ comment.content }}</p>
+  <div class="comment-actions">
+    <app-comment-form [commentData]="comment" (refreshList)="commentChanged()" ></app-comment-form>
+    <button class="remove-button" (click)="remove() ">Remove</button>
+  </div>
+</div>
+

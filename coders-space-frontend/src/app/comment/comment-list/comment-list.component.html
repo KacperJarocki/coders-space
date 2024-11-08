@@ -1,5 +1,7 @@
 @if(listState.state==='loading'){
-<p>Loading</p>
+<div class="loading">
+  <p>Loading</p>
+</div>
 }@else if(listState.state ==='success'){
 <section class="result">
   @for(comment of listState.results;track comment.id){
@@ -7,5 +9,7 @@
   }
 </section>
 }@else if(listState.state ==='error'){
-<p>{{listState.error.message}}</p>
+<div class="error">
+  <p>{{ listState.error.message }}</p>
+</div>
 }

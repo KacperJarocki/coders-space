@@ -1,22 +1,28 @@
-<section class="Publication">
-  <h1>{{ publication.title }}</h1>
-  <p>{{ publication.content }}</p>
+<section class="publication">
   <div class="meta">
     <span><strong>Type:</strong> {{ publication.publication_type }}</span>
     <span><strong>Client ID:</strong> {{ publication.client_id }}</span>
-    <span><strong>Posted on:</strong> {{ publication.post_created }}</span>
+    <span><strong>Posted on:</strong> {{ publication.post_created | date:'medium' }}</span>
   </div>
+
+  <h1>{{ publication.title }}</h1>
+  <p>{{ publication.content }}</p>
+
   <div class="actions">
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
+    <button class="show-comments-button" (click)="showComments()">Show Comments</button>
+    @if(!commentsVisible){
+    <app-comment-form [Publication]="publication"></app-comment-form>
+    }
   </div>
+  <section class="comments" *ngIf="commentsVisible">
+    <app-comment-list [publication]="publication"></app-comment-list>
+  </section>
 </section>
-@if(isModalVisible){
-<app-edit-publication
-    [publication]="publication"
+
+<app-edit-publication *ngIf="isModalVisible"
+  [publication]="publication"
   (close)="closeEditPublication()"
-(refreshList)="refresh()">
+  (refreshList)="refresh()">
 </app-edit-publication>
-}
-
-

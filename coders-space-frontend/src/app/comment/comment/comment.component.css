@@ -1,0 +1,47 @@
+.comment-card {
+  background-color: #F9F9F9;
+  border: 1px solid #E0E0E0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-content {
+  font-size: 16px;
+  color: #2C3639;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end; /* Przyciski są wyrównane do prawej */
+}
+
+/* Styl przycisków "Edit" i "Remove" */
+.comment-card .edit-button,
+.comment-card .remove-button {
+  background-color: #2C3639;
+  color: #DCD7C9;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* Stylizacja przycisków na hover */
+.comment-card .edit-button:hover {
+  background-color: #A27B5C;
+}
+
+.comment-card .remove-button {
+  background-color: #E74C3C;
+}
+
+.comment-card .remove-button:hover {
+  background-color: #C0392B;
+}
