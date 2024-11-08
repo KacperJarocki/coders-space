@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Comment } from '../../interfaces/comment';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ export class CommentFormComponent {
   @Input() Event: Event | null = null;
   @Input() Publication: Publication | null = null;
   @Input() msg: string = "Add comment";
+  @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   commentForm!: FormGroup;
   isVisible: boolean = false;
   constructor(private fb: FormBuilder, private jwtService: JwtServiceService, private commentService: CommentService) { }
@@ -50,6 +51,7 @@ export class CommentFormComponent {
         next: (response) => {
           console.log('Comment posted');
           console.log(response);
+          this.refreshList.emit();
         }
       })
 

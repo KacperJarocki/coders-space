@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { Comment } from '../interfaces/comment';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { Comment } from '../interfaces/comment';
 export class CommentService {
 
   constructor(private http: HttpClient) { }
-
+  private signalComments = signal<Comment[]>([]);
+  comments = computed(() => this.signalComments)
   private url = "http://backend.localhost/api/v1/comments";
 
   public getComments(comment: Comment) {

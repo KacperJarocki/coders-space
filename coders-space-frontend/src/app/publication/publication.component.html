@@ -12,10 +12,10 @@
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
+    @if(!commentsVisible){
     <app-comment-form [Publication]="publication"></app-comment-form>
+    }
   </div>
-
-
   <section class="comments" *ngIf="commentsVisible">
     <app-comment-list [publication]="publication"></app-comment-list>
   </section>

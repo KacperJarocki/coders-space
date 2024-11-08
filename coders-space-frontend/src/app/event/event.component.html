@@ -10,7 +10,9 @@
     <button class="edit-button" (click)="editEvent()">Edit</button>
     <button class="remove-button" (click)="removeEvent()">Remove</button>
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
-    <app-comment-form [Event]="event"></app-comment-form>
+    @if(!commentsVisible){
+    <app-comment-form [Event]="event" ></app-comment-form>
+    }
   </div>
   @if(commentsVisible){
   <section class="comments">

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Comment } from '../../interfaces/comment';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { CommentService } from '../../services/comment.service';
@@ -12,13 +12,19 @@ import { CommentService } from '../../services/comment.service';
 })
 export class CommentComponent {
   @Input() comment!: Comment;
+  @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   constructor(private commentService: CommentService) { }
   remove(): void {
     this.commentService.deleteComment(this.comment).subscribe({
       next: (response: any) => {
         console.log('Comment deleted', response);
         alert('Comment deleted');
+        this.commentChanged();
       }
     })
   }
+  commentChanged() {
+    this.refreshList.emit();
+  }
+
 }
