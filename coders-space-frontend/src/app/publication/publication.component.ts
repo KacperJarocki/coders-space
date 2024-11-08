@@ -3,11 +3,13 @@ import { Publication } from '../interfaces/publication';
 import { PublicationService } from '../services/publication.service';
 import { EditPublicationComponent } from '../edit-publication/edit-publication.component';
 import { CommonModule } from '@angular/common';
+import { CommentListComponent } from '../comment/comment-list/comment-list.component';
+import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
 
 @Component({
   selector: 'app-publication',
   standalone: true,
-  imports: [EditPublicationComponent, CommonModule],
+  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent],
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.css']
 })
@@ -15,8 +17,12 @@ export class PublicationComponent {
   @Input() publication!: Publication;
   @Output() refreshList = new EventEmitter<void>();
   isModalVisible: boolean = false;
-
+  commentsVisible: boolean = false;
   constructor(private publicationService: PublicationService) { }
+  showComments(): void {
+    console.log('Showing comments');
+    this.commentsVisible = !this.commentsVisible;
+  }
 
   editPublication(): void {
     this.isModalVisible = true;
