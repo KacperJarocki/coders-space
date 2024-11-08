@@ -1,15 +1,16 @@
 <section class="event">
-  <h1>{{ event.name }}</h1>
-  <p>{{ event.content }}</p>
   <div class="meta">
     <span><strong>Date:</strong> {{ event.date | date:'medium' }}</span> <!-- Display formatted date -->
     <span><strong>Created At:</strong> {{ event.created_at | date:'medium' }}</span> <!-- Display created_at date -->
     <span><strong>Client ID:</strong> {{ event.client_id }}</span> <!-- Display client ID -->
   </div>
+  <h1>{{ event.name }}</h1>
+  <p>{{ event.content }}</p>
   <div class="actions">
     <button class="edit-button" (click)="editEvent()">Edit</button>
     <button class="remove-button" (click)="removeEvent()">Remove</button>
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
+    <app-comment-form [Event]="event"></app-comment-form>
   </div>
   @if(commentsVisible){
   <section class="comments">

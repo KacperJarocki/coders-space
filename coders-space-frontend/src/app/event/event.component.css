@@ -1,27 +1,28 @@
+/* Styl sekcji event */
 .event {
-  border: 1px solid #2C3639;         /* Border similar to publication */
-  padding: 20px;                     /* Padding for spacing */
-  background-color: #F2F2F2;         /* Light background color */
-  max-width: 600px;                  /* Maximum width */
-  margin: 20px auto;                 /* Center align */
-  border-radius: 8px;                /* Rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border: 1px solid #2C3639;
+  padding: 20px;
+  background-color: #F2F2F2;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .event h1 {
   font-size: 24px;
   color: #2C3639;
   margin-bottom: 10px;
-  word-wrap: break-word;             /* Prevent long words from overflowing */
+  word-wrap: break-word;
 }
 
 .event p {
   font-size: 16px;
   color: #2C3639;
-  word-wrap: break-word;             /* Break long words */
-  overflow-wrap: break-word;         /* Additional support for older browsers */
-  max-width: 100%;                   /* Prevent horizontal overflow */
-  white-space: pre-wrap;             /* Preserve line breaks */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: pre-wrap;
 }
 
 .event .meta {
@@ -30,21 +31,56 @@
   margin-top: 10px;
 }
 
+/* Sekcja przycisków akcji */
 .event .actions {
   margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.event .edit-button, .event .remove-button {
+/* Styl przycisków "Edit" i "Remove" */
+.event .edit-button,
+.event .remove-button {
   background-color: #2C3639;
   color: #DCD7C9;
   border: none;
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.event .edit-button:hover, .event .remove-button:hover {
+/* Stylizacja przycisków na hover */
+.event .edit-button:hover,
+.event .remove-button:hover {
   background-color: #A27B5C;
 }
 
+/* Styl przycisku "Show Comments" */
+.event .show-comments-button {
+  background-color: #3F4E4F; /* Subtelny odcień, aby odróżniał się od pozostałych */
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Stylizacja przycisku "Show Comments" na hover */
+.event .show-comments-button:hover {
+  background-color: #556B6F; /* Delikatnie jaśniejszy odcień dla efektu interakcji */
+}
+
+/* Wspólne stylizacje dla przycisków */
+.event .actions button {
+  font-size: 14px;
+}
+
+/* Sekcja komentarzy */
+.comments {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #DDD;
+}

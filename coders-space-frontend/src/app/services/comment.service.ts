@@ -14,4 +14,7 @@ export class CommentService {
   public getComments(comment: Comment) {
     return this.http.put<Comment[]>(this.url, comment);
   }
+  public postComment(comment: Comment) {
+    return this.http.post<Comment>(this.url, comment);
+  }
 }
