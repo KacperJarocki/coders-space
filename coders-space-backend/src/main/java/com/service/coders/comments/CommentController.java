@@ -50,6 +50,7 @@ public class CommentController {
   @PostMapping
   public ResponseEntity create(@RequestBody Comments comment) {
     Comments createdComment = commentService.create(comment);
+    logger.info("saving comment with id " + createdComment.getId() + " and content " + createdComment.getContent());
     if (createdComment != null) {
       return ResponseEntity.ok(createdComment);
     } else {

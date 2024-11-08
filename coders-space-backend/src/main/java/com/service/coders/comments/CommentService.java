@@ -39,6 +39,7 @@ public class CommentService {
     Comments com;
     try {
       com = commentRepository.save(comment);
+      logger.info("comment created with content:" + com.getContent());
     } catch (Exception e) {
       e.printStackTrace();
       com = null;
