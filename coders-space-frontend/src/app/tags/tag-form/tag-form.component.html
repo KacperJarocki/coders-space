@@ -1,0 +1,15 @@
+<div class="tag-form-container">
+  <form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Tag Name</label>
+      <input id="name" formControlName="name" placeholder="Enter tag name" />
+
+      <div *ngIf="tagForm.get('name')?.invalid && tagForm.get('name')?.touched" class="error">
+        <small *ngIf="tagForm.get('name')?.errors?.['required']">Name is required.</small>
+        <small *ngIf="tagForm.get('name')?.errors?.['minlength']">Minimum 2 characters required.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="tagForm.invalid">Save Tag</button>
+  </form>
+</div>

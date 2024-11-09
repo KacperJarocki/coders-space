@@ -3,8 +3,8 @@
     <span><strong>Type:</strong> {{ publication.publication_type }}</span>
     <span><strong>Client ID:</strong> {{ publication.client_id }}</span>
     <span><strong>Posted on:</strong> {{ publication.post_created | date:'medium' }}</span>
+    <app-tag-list [publication]="publication"></app-tag-list>
   </div>
-
   <h1>{{ publication.title }}</h1>
   <p>{{ publication.content }}</p>
 

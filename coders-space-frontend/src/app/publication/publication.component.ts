@@ -5,11 +5,12 @@ import { EditPublicationComponent } from '../edit-publication/edit-publication.c
 import { CommonModule } from '@angular/common';
 import { CommentListComponent } from '../comment/comment-list/comment-list.component';
 import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
+import { TagListComponent } from '../tags/tag-list/tag-list.component';
 
 @Component({
   selector: 'app-publication',
   standalone: true,
-  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent],
+  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent],
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.css']
 })
