@@ -1,1 +1,10 @@
-<p>tag works!</p>
+<div class="tag-container">
+  <div class="tag-label">
+    {{ tag.tag.name }}
+    <button class="edit-button" (click)="toggleEdit()">✎</button>
+    <button class="delete-button" (click)="deleteTag()">✖</button>
+  </div>
+  @if(editMode){
+  <app-tag-form [tag]="tag" (close)="toggleEdit()"></app-tag-form>
+  }
+</div>

@@ -1,1 +1,19 @@
-<p>tag-list works!</p>
+@if(listState.state==='loading'){
+<div class="loading">
+  <p>Loading</p>
+</div>
+}@else if(listState.state ==='success'){
+<section class="result">
+  @for(tag of listState.results;track tag.id){
+  <app-tag [tag]="tag"></app-tag>
+  }
+</section>
+}@else if(listState.state ==='error'){
+<div class="error">
+  <p>{{ listState.error.message }}</p>
+</div>
+}
+<button (click)="toggleAddTag()">add tag</button>
+@if(addTag){
+<app-tag-form [event]="event" [publication]="publication"></app-tag-form>
+}
