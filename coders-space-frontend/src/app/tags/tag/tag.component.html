@@ -5,6 +5,6 @@
     <button class="delete-button" (click)="deleteTag()">✖</button>
   </div>
   @if(editMode){
-  <app-tag-form [tag]="tag" (close)="toggleEdit()"></app-tag-form>
+  <app-tag-form [tag]="tag" (closeForm)="toggleEdit();this.tagChanged.emit()"></app-tag-form>
   }
 </div>

@@ -3,6 +3,7 @@
     <span><strong>Date:</strong> {{ event.date | date:'medium' }}</span> <!-- Display formatted date -->
     <span><strong>Created At:</strong> {{ event.created_at | date:'medium' }}</span> <!-- Display created_at date -->
     <span><strong>Client ID:</strong> {{ event.client_id }}</span> <!-- Display client ID -->
+    <app-tag-list [event]="event"></app-tag-list> <!-- Display tags -->
   </div>
   <h1>{{ event.name }}</h1>
   <p>{{ event.content }}</p>

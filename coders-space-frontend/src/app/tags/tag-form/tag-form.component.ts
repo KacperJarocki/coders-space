@@ -18,6 +18,8 @@ export class TagFormComponent {
   @Input() tag?: TagsPublicationsEvents;
   @Input() publication?: Publication;
   @Input() event?: Event;
+  @Output() refreshList: EventEmitter<void> = new EventEmitter<void>;
+  @Output() closeForm: EventEmitter<void> = new EventEmitter<void>();
   tagForm: FormGroup;
 
   constructor(private fb: FormBuilder, private tagService: TagService) {
@@ -46,7 +48,7 @@ export class TagFormComponent {
       }
       console.log(tagToSave);
       this.tagService.createTag(tagToSave).subscribe({
-        next: () => console.log('Tag saved' + tagToSave.publicationId + "  " + tagToSave.eventId + tagToSave.tag.name),
+        next: () => { this.closeForm.emit(); this.refreshList.emit(); },
         error: (err) => console.error('Failed to save tag:', err)
       });
     }

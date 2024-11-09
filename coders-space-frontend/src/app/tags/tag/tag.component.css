@@ -1,37 +1,68 @@
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px; /* Smaller gap between tags */
+  margin-top: 10px;
+}
+
+/* Individual tag container */
 .tag-container {
   display: flex;
   align-items: center;
-  gap: 8px; /* Odległość między tagami */
+  background-color: #3F4E4F; /* Dark greenish-gray background */
+  border-radius: 12px;
+  padding: 4px 8px; /* Reduced padding for a tighter look */
+  gap: 4px;
+  max-width: fit-content;
+  flex-shrink: 0;
 }
 
+/* Tag label text */
 .tag-label {
-  font-size: 13px;
-  color: #2C3639;
-  background-color: #F2F2F2;
-  padding: 2px 8px;
-  border-radius: 4px;
-  display: inline-flex;
+  font-size: 12px; /* Slightly smaller font size */
+  color: #DCD7C9;
+  font-weight: bold;
+  display: flex;
   align-items: center;
-  position: relative; /* Ustawienie do pozycjonowania ikon */
+  gap: 4px;
+  word-break: break-word;
 }
 
-.edit-button, .delete-button {
+/* Edit and delete buttons */
+.edit-button,
+.delete-button {
   background: none;
   border: none;
-  color: #888888;
+  padding: 4px; /* Smaller padding */
+  font-size: 12px; /* Smaller icon size */
+  color: #DCD7C9;
   cursor: pointer;
-  font-size: 12px;
-  padding: 0 4px;
-  margin-left: 4px;
-  display: inline-flex;
+  transition: color 0.3s ease;
+  display: flex;
   align-items: center;
-  transition: color 0.2s ease;
+  justify-content: center;
+  border-radius: 50%;
 }
 
+/* Button hover effects */
 .edit-button:hover {
-  color: #3F4E4F;
+  color: #A27B5C;
 }
 
 .delete-button:hover {
-  color: #C0392B;
+  color: #E74C3C;
+}
+
+/* Button click effects for mobile feedback */
+.edit-button:active,
+.delete-button:active {
+  transform: scale(0.9);
+}
+
+@media (max-width: 600px) {
+  .edit-button,
+  .delete-button {
+    font-size: 14px; /* Slightly larger on mobile for better accessibility */
+    padding: 6px;
+  }
 }
