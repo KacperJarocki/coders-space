@@ -6,10 +6,10 @@ export interface Reaction {
   commentId: number | null;
   type: ReactionType;
 }
-enum ReactionType {
-  LIKE,
-  DISLIKE,
-  RTFM,
-  LOVE,
-  LOL,
+export enum ReactionType {
+  LIKE = 0,
+  DISLIKE = 1,
+  RTFM = 2,
+  LOVE = 3,
+  LOL = 4,
 }

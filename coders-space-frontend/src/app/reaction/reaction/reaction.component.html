@@ -1,1 +1,8 @@
-<p>reaction works!</p>
+<div>
+  <button (click)="addOrUpdateReaction(ReactionType.LIKE)">👍 {{ reactionCounts["LIKE"] }} Like</button>
+  <button (click)="addOrUpdateReaction(ReactionType.DISLIKE)">👎 {{ reactionCounts["DISLIKE"] }} Dislike</button>
+  <button (click)="addOrUpdateReaction(ReactionType.RTFM)">📖 {{ reactionCounts["RTFM"] }} RTFM</button>
+  <button (click)="addOrUpdateReaction(ReactionType.LOVE)">❤️ {{ reactionCounts["LOVE"] }} Love</button>
+  <button (click)="addOrUpdateReaction(ReactionType.LOL)">😂 {{ reactionCounts["LOL"] }} LOL</button>
+  <button *ngIf="userReaction" (click)="removeReaction()">Usuń swoją reakcję</button>
+</div>

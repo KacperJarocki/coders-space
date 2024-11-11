@@ -9,6 +9,7 @@
   <p>{{ publication.content }}</p>
 
   <div class="actions">
+    <app-reaction [publication]="publication"></app-reaction>
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
