@@ -10,8 +10,10 @@
 
   <app-reaction [publication]="publication"></app-reaction>
   <div class="actions">
+    @if(isItYours()){
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
+    }
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
     @if(!commentsVisible){
     <app-comment-form [Publication]="publication"></app-comment-form>

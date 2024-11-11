@@ -9,8 +9,10 @@
   <p>{{ event.content }}</p>
   <app-reaction [event]="event"></app-reaction>
   <div class="actions">
+    @if(isItYours()){
     <button class="edit-button" (click)="editEvent()">Edit</button>
     <button class="remove-button" (click)="removeEvent()">Remove</button>
+    }
     <app-participation [event]="event"/>
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
     @if(!commentsVisible){

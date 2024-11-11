@@ -3,6 +3,7 @@ import { Comment } from '../../interfaces/comment';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { CommentService } from '../../services/comment.service';
 import { ReactionComponent } from '../../reaction/reaction/reaction.component';
+import { JwtServiceService } from '../../services/jwt-service.service';
 
 @Component({
   selector: 'app-comment',
@@ -14,7 +15,12 @@ import { ReactionComponent } from '../../reaction/reaction/reaction.component';
 export class CommentComponent {
   @Input() comment!: Comment;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
-  constructor(private commentService: CommentService) { }
+
+  constructor(private commentService: CommentService, private jwtService: JwtServiceService) { }
+  isItYours(): boolean {
+    const clientId = this.jwtService.getClientId() ?? -1;
+    return clientId == this.comment.clientId;
+  }
   remove(): void {
     this.commentService.deleteComment(this.comment).subscribe({
       next: (response: any) => {

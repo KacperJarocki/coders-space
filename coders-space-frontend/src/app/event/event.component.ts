@@ -8,6 +8,7 @@ import { CommentFormComponent } from '../comment/comment-form/comment-form.compo
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { ParticipationComponent } from '../participation/participation.component';
+import { JwtServiceService } from '../services/jwt-service.service';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -16,13 +17,18 @@ import { ParticipationComponent } from '../participation/participation.component
   styleUrl: './event.component.css'
 })
 export class EventComponent {
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private jwtService: JwtServiceService) { }
   @Input() event!: Event;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
   emitRefresh(): void {
     this.refreshList.emit();
+  }
+
+  isItYours(): boolean {
+    const clientId = this.jwtService.getClientId() ?? -1;
+    return clientId == this.event.client_id;
   }
   editEvent(): void {
     console.log('Editing event');

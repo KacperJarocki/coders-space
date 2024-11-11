@@ -3,8 +3,10 @@
   <p class="comment-content">{{ comment.content }}</p>
     <app-reaction [comment]="comment"></app-reaction>
   <div class="comment-actions">
+    @if(isItYours()){
     <app-comment-form [commentData]="comment" (refreshList)="commentChanged()" ></app-comment-form>
     <button class="remove-button" (click)="remove() ">Remove</button>
+    }
   </div>
 </div>
 

@@ -7,6 +7,7 @@ import { CommentListComponent } from '../comment/comment-list/comment-list.compo
 import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
+import { JwtServiceService } from '../services/jwt-service.service';
 
 @Component({
   selector: 'app-publication',
@@ -20,12 +21,16 @@ export class PublicationComponent {
   @Output() refreshList = new EventEmitter<void>();
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
-  constructor(private publicationService: PublicationService) { }
+  constructor(private publicationService: PublicationService, private jwtService: JwtServiceService) { }
   showComments(): void {
     console.log('Showing comments');
     this.commentsVisible = !this.commentsVisible;
   }
 
+  isItYours(): boolean {
+    const clientId = this.jwtService.getClientId() ?? -1;
+    return clientId == this.publication.client_id;
+  }
   editPublication(): void {
     this.isModalVisible = true;
     console.log('Opening edit publication modal');
