@@ -80,3 +80,10 @@ CREATE TABLE IF NOT EXISTS clients_bages (
     FOREIGN KEY (client_id) REFERENCES clients (id),
     FOREIGN KEY (bage_id) REFERENCES bages (id)
 );
+CREATE TABLE IF NOT EXISTS participations (
+    id SERIAL PRIMARY KEY,
+    client_id INTEGER NOT NULL,
+    event_id INTEGER NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES clients (id),
+    FOREIGN KEY (event_id) REFERENCES events (id)
+);
