@@ -11,9 +11,9 @@ import lombok.Setter;
 public class Reports {
   @Id
   int id;
-  int client_id;
-  int publication_id;
-  int event_id;
-  int comment_id;
+  Integer client_id;
+  Integer publication_id;
+  Integer event_id;
+  Integer comment_id;
   String Content;
 }

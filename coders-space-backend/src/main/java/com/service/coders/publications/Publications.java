@@ -21,7 +21,7 @@ public class Publications implements Reportable {
   int id;
   String title;
   String content;
-  int client_id;
+  Integer client_id;
   publicationType publication_type;
   LocalDateTime post_created;
 }
