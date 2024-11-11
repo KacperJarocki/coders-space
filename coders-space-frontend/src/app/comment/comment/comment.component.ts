@@ -19,7 +19,7 @@ export class CommentComponent {
   isItMine: boolean = false;
   constructor(private commentService: CommentService, private jwtService: JwtServiceService) { }
   isItYours(): boolean {
-    const clientId = this.jwtService.getClientId() ?? -1;
+    const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
     return clientId == this.comment.clientId;
   }
 

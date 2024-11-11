@@ -24,7 +24,7 @@ export class PublicationComponent {
   isItMine: boolean = false;
 
   isItYours(): boolean {
-    const clientId = this.jwtService.getClientId() ?? -1;
+    const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
     return clientId == this.publication.client_id;
   }
   constructor(private publicationService: PublicationService, private jwtService: JwtServiceService) {

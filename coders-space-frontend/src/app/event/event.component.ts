@@ -30,7 +30,7 @@ export class EventComponent {
 
 
   isItYours(): boolean {
-    const clientId = this.jwtService.getClientId() ?? -1;
+    const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
     return clientId == this.event.client_id;
   }
   ngOnInit() {

@@ -10,9 +10,16 @@ export class JwtServiceService {
   constructor() { }
   private decodeToken(): Jwtpayload | null {
     const token = localStorage.getItem('token');
-    console.log(token);
     if (token) {
       return jwtDecode<Jwtpayload>(token);
+    } else {
+      return null;
+    }
+  }
+  public getClientIdToShowButton(): number | null {
+    const decoded = this.decodeToken();
+    if (decoded && decoded.id) {
+      return decoded.id;
     } else {
       return null;
     }
@@ -20,10 +27,10 @@ export class JwtServiceService {
   public getClientId(): number | null {
     const decoded = this.decodeToken();
     if (decoded && decoded.id) {
-      console.log('Decoded client ID:', decoded.id);
       return decoded.id;
     } else {
-      console.error('Client ID not found in token');
+      console.error('You are not logged in');
+      alert('You are not logged in');
       return null;
     }
   }
