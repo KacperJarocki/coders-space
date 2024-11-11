@@ -7,10 +7,11 @@ import { CommentListComponent } from '../comment/comment-list/comment-list.compo
 import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
+import { ParticipationComponent } from '../participation/participation.component';
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent],
+  imports: [CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent, ParticipationComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })
