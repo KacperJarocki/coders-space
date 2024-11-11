@@ -8,6 +8,7 @@
   <h1>{{ publication.title }}</h1>
   <p>{{ publication.content }}</p>
 
+  <app-reaction [publication]="publication"></app-reaction>
   <div class="actions">
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
@@ -16,6 +17,7 @@
     <app-comment-form [Publication]="publication"></app-comment-form>
     }
   </div>
+
   <section class="comments" *ngIf="commentsVisible">
     <app-comment-list [publication]="publication"></app-comment-list>
   </section>

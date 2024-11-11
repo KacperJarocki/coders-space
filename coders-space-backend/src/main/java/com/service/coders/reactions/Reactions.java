@@ -1,7 +1,6 @@
 package com.service.coders.reactions;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,12 +9,17 @@ import lombok.Setter;
 @Setter
 public class Reactions {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
   reactionType type;
-  int client_id;
-  int publication_id;
-  int event_id;
-  int comment_id;
+  @Column(name = "client_id")
+  Integer clientId;
+  @Column(name="publication_id")
+  Integer publicationId;
+  @Column(name="event_id")
+  Integer eventId;
+  @Column(name="comment_id")
+  Integer commentId;
 }
 
 enum reactionType {

@@ -8,8 +8,6 @@ import { Comment } from '../interfaces/comment';
 export class CommentService {
 
   constructor(private http: HttpClient) { }
-  private signalComments = signal<Comment[]>([]);
-  comments = computed(() => this.signalComments)
   private url = "http://backend.localhost/api/v1/comments";
 
   public getComments(comment: Comment) {

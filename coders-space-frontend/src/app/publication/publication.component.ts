@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { CommentListComponent } from '../comment/comment-list/comment-list.component';
 import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
+import { ReactionComponent } from '../reaction/reaction/reaction.component';
 
 @Component({
   selector: 'app-publication',
+  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent],
   standalone: true,
-  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent],
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.css']
 })

@@ -6,10 +6,11 @@ import { EditEventComponent } from '../edit-event/edit-event.component';
 import { CommentListComponent } from '../comment/comment-list/comment-list.component';
 import { CommentFormComponent } from '../comment/comment-form/comment-form.component';
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
+import { ReactionComponent } from '../reaction/reaction/reaction.component';
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent],
+  imports: [CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })
