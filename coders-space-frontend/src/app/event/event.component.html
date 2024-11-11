@@ -9,7 +9,7 @@
   <p>{{ event.content }}</p>
   <app-reaction [event]="event"></app-reaction>
   <div class="actions">
-    @if(isItYours()){
+    @if(isItMine){
     <button class="edit-button" (click)="editEvent()">Edit</button>
     <button class="remove-button" (click)="removeEvent()">Remove</button>
     }

@@ -16,10 +16,15 @@ export class CommentComponent {
   @Input() comment!: Comment;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
 
+  isItMine: boolean = false;
   constructor(private commentService: CommentService, private jwtService: JwtServiceService) { }
   isItYours(): boolean {
     const clientId = this.jwtService.getClientId() ?? -1;
     return clientId == this.comment.clientId;
+  }
+
+  ngOnInit() {
+    this.isItMine = this.isItYours();
   }
   remove(): void {
     this.commentService.deleteComment(this.comment).subscribe({

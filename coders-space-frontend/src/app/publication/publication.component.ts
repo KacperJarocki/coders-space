@@ -21,16 +21,22 @@ export class PublicationComponent {
   @Output() refreshList = new EventEmitter<void>();
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
-  constructor(private publicationService: PublicationService, private jwtService: JwtServiceService) { }
-  showComments(): void {
-    console.log('Showing comments');
-    this.commentsVisible = !this.commentsVisible;
-  }
+  isItMine: boolean = false;
 
   isItYours(): boolean {
     const clientId = this.jwtService.getClientId() ?? -1;
     return clientId == this.publication.client_id;
   }
+  constructor(private publicationService: PublicationService, private jwtService: JwtServiceService) {
+  }
+  ngOnInit() {
+    this.isItMine = this.isItYours();
+  }
+  showComments(): void {
+    console.log('Showing comments');
+    this.commentsVisible = !this.commentsVisible;
+  }
+
   editPublication(): void {
     this.isModalVisible = true;
     console.log('Opening edit publication modal');

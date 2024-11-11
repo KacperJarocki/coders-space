@@ -10,7 +10,7 @@
 
   <app-reaction [publication]="publication"></app-reaction>
   <div class="actions">
-    @if(isItYours()){
+    @if(isItMine){
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
     }

@@ -22,14 +22,21 @@ export class EventComponent {
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
+
+  isItMine: boolean = false;
   emitRefresh(): void {
     this.refreshList.emit();
   }
+
 
   isItYours(): boolean {
     const clientId = this.jwtService.getClientId() ?? -1;
     return clientId == this.event.client_id;
   }
+  ngOnInit() {
+    this.isItMine = this.isItYours();
+  }
+
   editEvent(): void {
     console.log('Editing event');
     this.isModalVisible = true;
