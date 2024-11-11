@@ -72,9 +72,6 @@ export class ReactionComponent {
 
     this.reactions.forEach(reaction => {
       const reactionTypeKey = reaction.type;
-      console.log("Typ reakcji:", reaction.type);
-      console.log("Klucz:", reactionTypeKey);
-      console.log(this.reactionCounts[reactionTypeKey]);
       if (this.reactionCounts[reactionTypeKey] !== undefined) {
         this.reactionCounts[reactionTypeKey]++;
       } else {
@@ -82,10 +79,10 @@ export class ReactionComponent {
       }
     });
 
-    console.log("Zaktualizowane liczniki reakcji:", this.reactionCounts);
   }
 
   addOrUpdateReaction(reactionType: ReactionType): void {
+    console.log("Reakcja usera zapisana:", this.userReaction);
     const reaction: Reaction = {
       id: this.userReaction?.id || 0,
       clientId: this.jwtService.getClientId() ?? -1,
@@ -94,15 +91,7 @@ export class ReactionComponent {
       commentId: this.comment?.id ?? null,
       type: reactionType
     };
-
-    if (this.userReaction) {
-      this.reactionService.delete(this.userReaction).subscribe({
-        next: () => { this.submitNewReaction(reaction) },
-        error: (error) => { console.error('Błąd przy usuwaniu poprzedniej reakcji:', error) },
-      });
-    } else {
-      this.submitNewReaction(reaction);
-    }
+    this.submitNewReaction(reaction);
   }
 
   submitNewReaction(reaction: Reaction): void {
@@ -112,7 +101,6 @@ export class ReactionComponent {
         this.reactions.push(updatedReaction);
         this.userReaction = updatedReaction;
         this.updateReactionCounts();
-
         this.cdRef.detectChanges();
       },
       error: (error) => { console.error('Błąd przy dodawaniu/aktualizacji reakcji:', error) },
@@ -126,7 +114,6 @@ export class ReactionComponent {
           this.reactions = this.reactions.filter(r => r.id !== this.userReaction!.id);
           this.userReaction = null;
           this.updateReactionCounts();
-
           this.cdRef.detectChanges();
         },
         error: (error) => console.error('Błąd przy usuwaniu reakcji:', error)

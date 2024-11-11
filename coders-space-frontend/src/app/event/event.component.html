@@ -7,6 +7,7 @@
   </div>
   <h1>{{ event.name }}</h1>
   <p>{{ event.content }}</p>
+  <app-reaction [event]="event"></app-reaction>
   <div class="actions">
     <button class="edit-button" (click)="editEvent()">Edit</button>
     <button class="remove-button" (click)="removeEvent()">Remove</button>
@@ -19,6 +20,7 @@
   <section class="comments">
     <app-comment-list [event] = "event"></app-comment-list>
   </section>
+
   }
 </section>
 

@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Comment } from '../../interfaces/comment';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
 import { CommentService } from '../../services/comment.service';
+import { ReactionComponent } from '../../reaction/reaction/reaction.component';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentFormComponent],
+  imports: [CommentFormComponent, ReactionComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
