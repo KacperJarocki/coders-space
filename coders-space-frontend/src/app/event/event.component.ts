@@ -10,6 +10,7 @@ import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { ParticipationComponent } from '../participation/participation.component';
 import { JwtServiceService } from '../services/jwt-service.service';
 import { ClientService } from '../services/client.service';
+import { ClientName } from '../interfaces/client';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -72,6 +73,4 @@ export class EventComponent {
     });
   }
 }
-interface ClientName {
-  clientName: string;
-}
+

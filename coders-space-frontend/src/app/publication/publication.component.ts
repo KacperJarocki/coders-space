@@ -8,7 +8,8 @@ import { CommentFormComponent } from '../comment/comment-form/comment-form.compo
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { JwtServiceService } from '../services/jwt-service.service';
-
+import { ClientName } from '../interfaces/client';
+import { ClientService } from '../services/client.service';
 @Component({
   selector: 'app-publication',
   imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent],
@@ -17,20 +18,30 @@ import { JwtServiceService } from '../services/jwt-service.service';
   styleUrls: ['./publication.component.css']
 })
 export class PublicationComponent {
+
+  constructor(private publicationService: PublicationService, private jwtService: JwtServiceService, private clientService: ClientService) { }
   @Input() publication!: Publication;
   @Output() refreshList = new EventEmitter<void>();
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
   isItMine: boolean = false;
+  clientName: ClientName = { clientName: '' };
+
+  getClientName(): void {
+    this.clientService.retriveClientName(this.publication.client_id).subscribe({
+      next: (response: ClientName) => { this.clientName = response; },
+      error: (error: any) => { console.error('There wa an error!', error); },
+    });
+  }
 
   isItYours(): boolean {
     const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
     return clientId == this.publication.client_id;
   }
-  constructor(private publicationService: PublicationService, private jwtService: JwtServiceService) {
-  }
+
   ngOnInit() {
     this.isItMine = this.isItYours();
+    this.getClientName();
   }
   showComments(): void {
     console.log('Showing comments');

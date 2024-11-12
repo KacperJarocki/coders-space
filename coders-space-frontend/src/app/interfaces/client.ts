@@ -5,3 +5,6 @@ export interface Client {
   password: string;
   client_type: string;
 }
+export interface ClientName {
+  clientName: string;
+}
