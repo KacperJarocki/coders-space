@@ -35,4 +35,7 @@ public class ClientService implements UserDetailsService {
       return client;
     }
   }
+  public Clients findById(Integer id) {
+    return clientRepository.findById(id).orElse(null);
+  }
 }

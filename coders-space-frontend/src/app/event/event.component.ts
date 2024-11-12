@@ -9,6 +9,7 @@ import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { ParticipationComponent } from '../participation/participation.component';
 import { JwtServiceService } from '../services/jwt-service.service';
+import { ClientService } from '../services/client.service';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -16,10 +17,12 @@ import { JwtServiceService } from '../services/jwt-service.service';
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })
+
 export class EventComponent {
-  constructor(private eventService: EventService, private jwtService: JwtServiceService) { }
+  constructor(private eventService: EventService, private jwtService: JwtServiceService, private clientService: ClientService) { }
   @Input() event!: Event;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
+  clientName: ClientName = { clientName: '' };
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
 
@@ -27,7 +30,12 @@ export class EventComponent {
   emitRefresh(): void {
     this.refreshList.emit();
   }
-
+  getClientName(): void {
+    this.clientService.retriveClientName(this.event.client_id).subscribe({
+      next: (response: ClientName) => { this.clientName = response; },
+      error: (error: any) => { console.error('There wa an error!', error); },
+    });
+  }
 
   isItYours(): boolean {
     const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
@@ -35,6 +43,7 @@ export class EventComponent {
   }
   ngOnInit() {
     this.isItMine = this.isItYours();
+    this.getClientName();
   }
 
   editEvent(): void {
@@ -62,4 +71,7 @@ export class EventComponent {
       },
     });
   }
+}
+interface ClientName {
+  clientName: string;
 }
