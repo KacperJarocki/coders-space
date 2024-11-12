@@ -1,7 +1,7 @@
-<section class="publication">
+<section class="publication {{ publication.publication_type | lowercase }}">
   <div class="meta">
     <span><strong>Type:</strong> {{ publication.publication_type }}</span>
-    <span><strong>Client ID:</strong> {{ publication.client_id }}</span>
+    <span><strong>Client Name:</strong> {{ clientName.clientName }}</span>
     <span><strong>Posted on:</strong> {{ publication.post_created | date:'medium' }}</span>
     <app-tag-list [publication]="publication"></app-tag-list>
   </div>
@@ -10,8 +10,10 @@
 
   <app-reaction [publication]="publication"></app-reaction>
   <div class="actions">
+    @if(isItMine){
     <button class="edit-button" (click)="editPublication()">Edit</button>
     <button class="remove-button" (click)="removePublication()">Remove</button>
+    }
     <button class="show-comments-button" (click)="showComments()">Show Comments</button>
     @if(!commentsVisible){
     <app-comment-form [Publication]="publication"></app-comment-form>

@@ -54,7 +54,7 @@ export class ReactionComponent {
         this.reactions = reactions;
         console.log('Pobrane reakcje:', this.reactions);
         this.updateReactionCounts();
-        this.userReaction = this.reactions.find(r => r.clientId === this.jwtService.getClientId()) || null;
+        this.userReaction = this.reactions.find(r => r.clientId === this.jwtService.getClientIdToShowButton()) || null;
         this.cdRef.detectChanges();
       },
       error: (error) => console.error('Błąd pobierania reakcji:', error)

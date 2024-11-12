@@ -2,13 +2,10 @@ package com.service.coders.clients;
 
 import java.util.logging.Logger;
 
+import com.service.coders.reports.ClientNameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/clients")
@@ -30,6 +27,13 @@ public class ClientController {
     logger.info("Saving client with name: " + client.getName());
     clientService.saveClient(client);
     return ResponseEntity.ok().build();
+  }
+  @GetMapping("/{id}/name")
+  public ResponseEntity retriveClientName(@PathVariable Integer id) {
+    logger.info("Retrieving client with id: " + id);
+    ClientNameResponse response = new ClientNameResponse();
+    response.setClientName(clientService.findById(id).getName());
+    return ResponseEntity.ok(response);
   }
 
 }

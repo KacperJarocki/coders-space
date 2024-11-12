@@ -8,6 +8,9 @@ import { CommentFormComponent } from '../comment/comment-form/comment-form.compo
 import { TagListComponent } from '../tags/tag-list/tag-list.component';
 import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { ParticipationComponent } from '../participation/participation.component';
+import { JwtServiceService } from '../services/jwt-service.service';
+import { ClientService } from '../services/client.service';
+import { ClientName } from '../interfaces/client';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -15,15 +18,35 @@ import { ParticipationComponent } from '../participation/participation.component
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })
+
 export class EventComponent {
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private jwtService: JwtServiceService, private clientService: ClientService) { }
   @Input() event!: Event;
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
+  clientName: ClientName = { clientName: '' };
   isModalVisible: boolean = false;
   commentsVisible: boolean = false;
+
+  isItMine: boolean = false;
   emitRefresh(): void {
     this.refreshList.emit();
   }
+  getClientName(): void {
+    this.clientService.retriveClientName(this.event.client_id).subscribe({
+      next: (response: ClientName) => { this.clientName = response; },
+      error: (error: any) => { console.error('There wa an error!', error); },
+    });
+  }
+
+  isItYours(): boolean {
+    const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
+    return clientId == this.event.client_id;
+  }
+  ngOnInit() {
+    this.isItMine = this.isItYours();
+    this.getClientName();
+  }
+
   editEvent(): void {
     console.log('Editing event');
     this.isModalVisible = true;
@@ -50,3 +73,4 @@ export class EventComponent {
     });
   }
 }
+

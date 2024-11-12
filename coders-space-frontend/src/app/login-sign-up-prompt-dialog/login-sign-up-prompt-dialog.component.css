@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  background-color: #fff; /* White background for the dialog */
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  width: 300px; /* Limit the dialog width for better presentation */
+}
+
+/* Title Styling */
+h1 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+  color: #333;
+}
+
+/* Content Styling */
+.mat-dialog-content {
+  text-align: center;
+  margin-bottom: 1.5em;
+  color: #555; /* Soft text color for better readability */
+}
+
+/* Dialog actions - where the buttons are */
+.mat-dialog-actions {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: 20px; /* Add space between buttons */
+}
+
+/* Style for the buttons */
+button {
+  width: 120px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners for the buttons */
+  transition: background-color 0.3s ease;
+}
+
+/* Button colors */
+button.mat-button {
+  background-color: #4CAF50; /* Green for 'Sign Up' and 'Login' */
+  color: white;
+  border: none;
+}
+
+button.mat-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+button.mat-button.color-accent {
+  background-color: #28a745; /* Brighter green accent for Sign Up */
+}
+
+button.mat-button.color-primary {
+  background-color: #007bff; /* Blue color for Login */
+}
+
+button.mat-button.color-accent:hover {
+  background-color: #218838; /* Darker green accent on hover for Sign Up */
+}
+
+button.mat-button.color-primary:hover {
+  background-color: #0056b3; /* Darker blue for Login on hover */
+}
+
+/* Material Dialog Styles */
+.mat-dialog-container {
+  background-color: #fff !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mat-dialog-title {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  color: #444;
+}
