@@ -1,29 +1,17 @@
-/* Color Variables */
-:root {
-  --dark-bg: #2C3639;
-  --medium-bg: #3F4E4F;
-  --accent-color: #A27B5C;
-  --light-bg: #DCD7C9;
-}
-
-/* Navbar styling */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: var(--dark-bg);
+  position: relative; /* Allows absolute positioning of the logo */
 }
 
-/* Flex containers for positioning */
-.navbar-section {
-  flex: 1;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center; /* Center the logo within its container */
-  flex: 1;
+/* Center the logo */
+.navbar .logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Login information styling */
@@ -48,5 +36,5 @@
 /* Login buttons styling */
 .login-buttons {
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
+  align-items: center;
 }
