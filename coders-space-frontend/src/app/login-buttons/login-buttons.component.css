@@ -1,16 +1,25 @@
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Space between buttons on larger screens */
+  gap: 10px; /* Space between buttons */
+}
+
 button {
   background-color: #A27B5C !important; /* Brązowe tło */
   color: #DCD7C9 !important; /* Kremowy tekst */
-  padding: 10px 20px;
+  padding: 8px 20px; /* Reduced padding to make buttons shorter */
   border: 2px solid #2C3639; /* Obramowanie w kolorze ciemnozielonym */
   border-radius: 5px; /* Zaokrąglone rogi */
   font-size: 16px;
   cursor: pointer;
-  display: inline-block;
+  display: inline-block; /* Keep buttons inline by default */
   text-transform: uppercase;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień */
   transition: background-color 0.3s ease;
+  width: 48%; /* Buttons take 48% width of the container (side-by-side) */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  text-align: center; /* Center text horizontally */
 }
 
 button:hover {
@@ -22,3 +31,15 @@ button:focus {
   outline: none; /* Usunięcie domyślnej obramówki po kliknięciu */
 }
 
+/* Media query to stack buttons on small screens */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Make buttons stretch across the full width */
+  }
+
+  button {
+    display: block; /* Make buttons block elements so they stack */
+    width: 100%; /* Ensure buttons take up full width on small screens */
+  }
+}
