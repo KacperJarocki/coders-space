@@ -3,13 +3,14 @@ import { jwtDecode } from 'jwt-decode';
 import { Jwtpayload } from '../interfaces/jwtpayload';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtServiceService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private router: Router) { }
   private userSubject = new BehaviorSubject<string | null>(null); // Holds the current user state
   public user$: Observable<string | null> = this.userSubject.asObservable();
   setUser(user: string): void {
@@ -45,14 +46,17 @@ export class JwtServiceService {
     const decoded = this.decodeToken();
     if (decoded && decoded.id) {
       this.setUser(decoded.name);
-      this.snackBar.open('You are not logged in. Please log in or sign up.', 'Close', {
-        duration: 3000, // Snackbar stays for 3 seconds
-        verticalPosition: 'top', // Position at the bottom
-        horizontalPosition: 'center', // Center aligned horizontally
-      });
       return decoded.id;
     } else {
       this.clearUser();
+      if (this.isBrowser()) {
+        const snackBarRef = this.snackBar.open('You are not logged in. Please log in or sign up.', 'Go to login', {
+          duration: 3000, // Snackbar stays for 3 seconds
+          verticalPosition: 'top', // Position at the bottom
+          horizontalPosition: 'center', // Center aligned horizontally
+        });
+        snackBarRef.onAction().subscribe(() => { this.router.navigate(['/login']); });
+      }
       return null;
     }
   }
