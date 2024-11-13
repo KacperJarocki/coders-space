@@ -20,8 +20,8 @@ export class ProfilePageComponent {
   editMode = false;
   isItMine: boolean = false;
   isItYours(): boolean {
-    const clientId = this.jwtService.getClientName() ?? -1;
-    return clientId == this.profileDetails?.clientName;
+    const clientName: string = this.jwtService.getClientName() ?? "";
+    return clientName === this.username;
   }
   editableProfile: ProfileDetails = { // Initialize with empty values
     id: null,
@@ -41,6 +41,7 @@ export class ProfilePageComponent {
       }
     });
     this.isItMine = this.isItYours();
+
   }
 
   getProfileDetails(username: string): void {
