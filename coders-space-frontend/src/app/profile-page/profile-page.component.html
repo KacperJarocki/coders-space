@@ -39,3 +39,4 @@
 </div>
 
 <div *ngIf="!profileDetails" class="error">It looks like user with that name does not exist</div>
+<app-publication-list [clientName]="username" [ForClientProfile]="true" ></app-publication-list>

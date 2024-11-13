@@ -21,4 +21,7 @@ export class PublicationService {
   public updatePublication(publication: Publication) {
     return this.http.put(this.url, publication)
   }
+  public getPublicationByClientName(clientName: string) {
+    return this.http.get<Publication[]>(`${this.url}/clientname/${clientName}`)
+  }
 }

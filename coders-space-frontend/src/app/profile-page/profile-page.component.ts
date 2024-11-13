@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { ProfileDetails } from '../interfaces/profile-details';
 import { FormsModule } from '@angular/forms';
 import { JwtServiceService } from '../services/jwt-service.service';
+import { PublicationListComponent } from '../publication-list/publication-list.component';
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PublicationListComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
 })

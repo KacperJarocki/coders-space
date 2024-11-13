@@ -35,7 +35,7 @@ export class PublicationFormComponent {
       title: this.publicationForm.get('title')?.value || "",
       content: this.publicationForm.get('content')?.value || "",
       publication_type: this.publicationForm.get('publication_type')?.value || "0",
-      client_id: client_id || -1,
+      clientId: client_id || -1,
       post_created: "",
       id: 0
     }
