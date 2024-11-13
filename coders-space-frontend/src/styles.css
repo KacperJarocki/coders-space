@@ -2,10 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevents horizontal overflow */
+
 }
+
 :root {
   --dark-bg: #2C3639;
   --medium-bg: #3F4E4F;
   --accent-color: #A27B5C;
   --light-bg: #DCD7C9;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

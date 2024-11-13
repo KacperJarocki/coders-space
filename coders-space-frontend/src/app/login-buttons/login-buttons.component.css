@@ -1,16 +1,28 @@
+.button-container {
+  display: flex;
+  justify-content:left; /* Space between buttons on larger screens */
+  margin: 0; /* Remove default margin between the buttons */
+}
+
 button {
   background-color: #A27B5C !important; /* Brązowe tło */
   color: #DCD7C9 !important; /* Kremowy tekst */
-  padding: 10px 20px;
+  padding: 8px 20px; /* Reduced padding to make buttons shorter */
   border: 2px solid #2C3639; /* Obramowanie w kolorze ciemnozielonym */
   border-radius: 5px; /* Zaokrąglone rogi */
   font-size: 16px;
   cursor: pointer;
-  display: inline-block;
+  display: flex; /* Use flexbox for centering content */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
   text-transform: uppercase;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień */
   transition: background-color 0.3s ease;
+  width: 80%; /* Adjusted width to make buttons less wide */
+  height: 40px; /* Set a fixed height for buttons */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  margin-right: 0; /* Remove margin on the right */
 }
 
 button:hover {
@@ -22,3 +34,19 @@ button:focus {
   outline: none; /* Usunięcie domyślnej obramówki po kliknięciu */
 }
 
+/* Media query to stack buttons on small screens */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Make buttons stretch across the full width */
+  }
+
+  button {
+    display: flex; /* Use flexbox for centering content */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    width: 80%; /* Adjusted width on small screens to be less wide */
+    height: 40px; /* Set the same height for small screens */
+    margin: 0; /* Remove any margins between buttons */
+  }
+}
