@@ -87,3 +87,12 @@ CREATE TABLE IF NOT EXISTS participations (
     FOREIGN KEY (client_id) REFERENCES clients (id),
     FOREIGN KEY (event_id) REFERENCES events (id)
 );
+CREATE TABLE IF NOT EXISTS profiles (
+    id SERIAL PRIMARY KEY,
+    client_id INTEGER,
+    bio TEXT,
+    github_username TEXT,
+    gitlab_username TEXT,
+    x_username TEXT,
+    FOREIGN KEY (client_id) REFERENCES clients (id)
+);
