@@ -1,6 +1,6 @@
 .button-container {
   display: flex;
-  justify-content:right; /* Space between buttons on larger screens */
+  justify-content:left; /* Space between buttons on larger screens */
   margin: 0; /* Remove default margin between the buttons */
 }
 
@@ -19,7 +19,7 @@ button {
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień */
   transition: background-color 0.3s ease;
-  width: 40%; /* Adjusted width to make buttons less wide */
+  width: 80%; /* Adjusted width to make buttons less wide */
   height: 40px; /* Set a fixed height for buttons */
   white-space: nowrap; /* Prevent text from wrapping to the next line */
   margin-right: 0; /* Remove margin on the right */
