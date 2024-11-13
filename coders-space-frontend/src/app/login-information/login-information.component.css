@@ -1,20 +1,3 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: var(--dark-bg);
-  position: relative; /* Allows absolute positioning of the logo */
-}
-
-/* Center the logo */
-.navbar .logo-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Login information styling */
 .name-container {
   display: flex;
   align-items: center;
@@ -31,10 +14,4 @@
   padding-left: 0.5rem;
   border-left: 2px solid var(--accent-color);
   font-family: Arial, sans-serif;
-}
-
-/* Login buttons styling */
-.login-buttons {
-  display: flex;
-  align-items: center;
 }

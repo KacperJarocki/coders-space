@@ -1,52 +1,54 @@
-/* Color Variables */
-:root {
-  --dark-bg: #2C3639;
-  --medium-bg: #3F4E4F;
-  --accent-color: #A27B5C;
-  --light-bg: #DCD7C9;
-}
-
-/* Navbar styling */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
+  justify-content: center; /* Center the logo by default */
+  padding: 0px 20px;
   background-color: var(--dark-bg);
+  color: var(--light-bg);
+  position: relative; /* Allow absolute positioning of side elements */
 }
 
-/* Flex containers for positioning */
-.navbar-section {
-  flex: 1;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center; /* Center the logo within its container */
-  flex: 1;
-}
-
-/* Login information styling */
-.name-container {
+.navbar-left {
+  position: absolute;
+  left: 20px; /* Position login info on the left */
   display: flex;
   align-items: center;
-  padding: 0.2rem 0.5rem;
-  background-color: var(--medium-bg);
-  border-radius: 4px;
 }
 
-.name-text {
-  font-size: 0.85rem;
-  color: var(--light-bg);
-  font-weight: 600;
-  margin: 0;
-  padding-left: 0.5rem;
-  border-left: 2px solid var(--accent-color);
-  font-family: Arial, sans-serif;
+.navbar-center {
+  color: var(--accent-color);
+  text-align: center;
 }
 
-/* Login buttons styling */
-.login-buttons {
+.navbar-right {
+  position: absolute;
+  right: 20px; /* Position login buttons on the right */
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px; /* Reduce padding for small screens */
+  }
+
+  .navbar-left,
+  .navbar-right {
+    position: static; /* Remove absolute positioning for smaller screens */
+    flex: 1;
+  }
+
+  .navbar-center {
+    flex: 2; /* Give the center section more space for balance */
+    text-align: center; /* Ensure logo is centered */
+  }
+
+  .navbar-left,
+  .navbar-right,
+  .navbar-center {
+    max-width: 33%; /* Limit width to prevent items from stacking */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
 }

@@ -1,7 +1,7 @@
 .button-container {
   display: flex;
-  justify-content: space-between; /* Space between buttons on larger screens */
-  gap: 10px; /* Space between buttons */
+  justify-content:right; /* Space between buttons on larger screens */
+  margin: 0; /* Remove default margin between the buttons */
 }
 
 button {
@@ -12,14 +12,17 @@ button {
   border-radius: 5px; /* Zaokrąglone rogi */
   font-size: 16px;
   cursor: pointer;
-  display: inline-block; /* Keep buttons inline by default */
+  display: flex; /* Use flexbox for centering content */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
   text-transform: uppercase;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lekki cień */
   transition: background-color 0.3s ease;
-  width: 48%; /* Buttons take 48% width of the container (side-by-side) */
+  width: 40%; /* Adjusted width to make buttons less wide */
+  height: 40px; /* Set a fixed height for buttons */
   white-space: nowrap; /* Prevent text from wrapping to the next line */
-  text-align: center; /* Center text horizontally */
+  margin-right: 0; /* Remove margin on the right */
 }
 
 button:hover {
@@ -35,11 +38,15 @@ button:focus {
 @media (max-width: 768px) {
   .button-container {
     flex-direction: column; /* Stack buttons vertically */
-    align-items: stretch; /* Make buttons stretch across the full width */
+    align-items: center; /* Make buttons stretch across the full width */
   }
 
   button {
-    display: block; /* Make buttons block elements so they stack */
-    width: 100%; /* Ensure buttons take up full width on small screens */
+    display: flex; /* Use flexbox for centering content */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    width: 80%; /* Adjusted width on small screens to be less wide */
+    height: 40px; /* Set the same height for small screens */
+    margin: 0; /* Remove any margins between buttons */
   }
-}
+
