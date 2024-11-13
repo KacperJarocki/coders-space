@@ -2,7 +2,7 @@ package com.service.coders.clients;
 
 import java.util.logging.Logger;
 
-import com.service.coders.reports.ClientNameResponse;
+import com.service.coders.responses.ClientNameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -28,7 +28,7 @@ export class PublicationComponent {
   clientName: ClientName = { clientName: '' };
 
   getClientName(): void {
-    this.clientService.retriveClientName(this.publication.client_id).subscribe({
+    this.clientService.retriveClientName(this.publication.clientId).subscribe({
       next: (response: ClientName) => { this.clientName = response; },
       error: (error: any) => { console.error('There wa an error!', error); },
     });
@@ -36,7 +36,7 @@ export class PublicationComponent {
 
   isItYours(): boolean {
     const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
-    return clientId == this.publication.client_id;
+    return clientId == this.publication.clientId;
   }
 
   ngOnInit() {

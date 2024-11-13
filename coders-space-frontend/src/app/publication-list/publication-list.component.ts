@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PublicationService } from '../services/publication.service';
 import { Publication } from '../interfaces/publication';
 import { PublicationComponent } from '../publication/publication.component';
@@ -16,6 +16,8 @@ export class PublicationListComponent {
   PublicationList: Publication[] = [];
   isLoaded = false;
   isModalVisible: boolean = false;
+  @Input() ForClientProfile: boolean = false;
+  @Input() clientName: string | null = '';
 
   openModal(): void {
     this.isModalVisible = true;
@@ -26,29 +28,34 @@ export class PublicationListComponent {
   }
   constructor(private publicationService: PublicationService) { }
   ngOnInit() {
-    this.publicationService.getPublications().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.PublicationList = data;
-        this.isLoaded = true;
-      },
-      error: (error) => {
-        console.error('There was an error!', error);
-      },
-    });
+    this.refresh();
   }
   refresh() {
     this.isLoaded = false;
     console.log('refreshing');
-    this.publicationService.getPublications().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.PublicationList = data;
-        this.isLoaded = true;
-      },
-      error: (error) => {
-        console.error('There was an error!', error);
-      },
-    });
+    if (!this.ForClientProfile) {
+      this.publicationService.getPublications().subscribe({
+        next: (data) => {
+          console.log(data);
+          this.PublicationList = data;
+          this.isLoaded = true;
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        },
+      });
+    } else {
+      this.publicationService.getPublicationByClientName(this.clientName ?? "").subscribe({
+        next: (data) => {
+          console.log(data);
+          this.PublicationList = data;
+          this.isLoaded = true;
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        },
+      });
+    }
   }
 }
+

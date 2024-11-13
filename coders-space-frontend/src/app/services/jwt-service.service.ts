@@ -46,8 +46,10 @@ export class JwtServiceService {
   public getClientId(): number | null {
     const decoded = this.decodeToken();
     if (decoded && decoded.id) {
+      this.setUser(decoded.name);
       return decoded.id;
     } else {
+      this.clearUser();
       console.error('You are not logged in');
       this.dialog.open(LoginSignUpPromptDialogComponent);
       return null;

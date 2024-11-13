@@ -2,26 +2,21 @@ package com.service.coders.publications;
 
 import java.time.LocalDateTime;
 
-import com.service.coders.interfaces.Reportable;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Publications implements Reportable {
+public class Publications {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
   String title;
   String content;
-  Integer client_id;
+  @Column(name="client_id")
+  Integer clientId;
   publicationType publication_type;
   LocalDateTime post_created;
 }

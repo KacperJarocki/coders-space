@@ -1,7 +1,7 @@
 export interface Publication {
   id: number;
   content: string;
-  client_id: number;
+  clientId: number;
   publication_type: string;
   post_created: string;
   title: string;

@@ -2,8 +2,6 @@ package com.service.coders.events;
 
 import java.time.LocalDateTime;
 
-import com.service.coders.interfaces.Followable;
-import com.service.coders.interfaces.Reportable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

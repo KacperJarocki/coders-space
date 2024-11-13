@@ -1,4 +1,4 @@
-package com.service.coders.reports;
+package com.service.coders.responses;
 
 import lombok.Getter;
 import lombok.Setter;
