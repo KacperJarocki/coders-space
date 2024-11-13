@@ -6,22 +6,40 @@
   background-color: var(--dark-bg);
   color: var(--light-bg);
   font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-page h2 {
   color: var(--accent-color);
   font-size: 1.8em;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.profile-page p {
-  color: var(--light-bg);
-  margin: 5px 0;
-  font-size: 1.1em;
-}
-
-.socials p {
+.profile-field {
+  display: flex;
+  align-items: center;
   margin: 10px 0;
+}
+
+.profile-field label {
+  width: 120px;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.profile-field span, .profile-field input {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 1em;
+  color: var(--light-bg);
+  background-color: var(--medium-bg);
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+}
+
+.profile-field input {
+  background-color: var(--dark-bg);
 }
 
 .socials a {
@@ -32,4 +50,27 @@
 .socials a:hover {
   color: var(--light-bg);
   text-decoration: underline;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  font-size: 1em;
+  color: var(--light-bg);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--medium-bg);
+}
+
+.error {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
 }

@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ProfileDetails } from '../interfaces/profile-details';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileDetailsService {
 
-  constructor() { }
-  getProfileDetails(username: string): ProfileDetails {
-    const profileDetails: ProfileDetails = {
-      id: 0,
-      bio: 'bio',
-      clientName: username,
-      github_username: null,
-      gitlab_username: 'gitlab_username',
-      x_username: 'x_username'
-    }
-    return profileDetails;
+  constructor(private http: HttpClient) { }
+  getProfileDetails(username: string) {
+    return this.http.get<ProfileDetails>(`http://backend.localhost/api/v1/profile/${username}`);
+  }
+  createOrUpdateProfileDetails(profileDetails: ProfileDetails) {
+    return this.http.post<ProfileDetails>('http://backend.localhost/api/v1/profile', profileDetails);
   }
 }
