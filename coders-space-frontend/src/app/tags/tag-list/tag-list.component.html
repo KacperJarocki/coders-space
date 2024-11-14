@@ -5,7 +5,7 @@
 }@else if(listState.state ==='success'){
 <section class="result">
   @for(tag of listState.results;track tag.id){
-  <app-tag [tag]="tag" (tagChanged)="refreshTags()"></app-tag>
+  <app-tag [tag]="tag" [isItMine]="isItMine"(tagChanged)="refreshTags()"></app-tag>
   }
   @if(isItMine){
 <button class="toggleButton"(click)="toggleAddTag()">add tag</button>

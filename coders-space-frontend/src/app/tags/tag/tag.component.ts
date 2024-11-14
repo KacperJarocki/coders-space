@@ -13,6 +13,7 @@ import { TagFormComponent } from '../tag-form/tag-form.component';
 export class TagComponent {
   @Input() tag!: TagsPublicationsEvents;
   @Output() tagChanged = new EventEmitter<void>
+  @Input() isItMine: boolean = false;
   editMode = false;
   constructor(private tagService: TagService) { }
   deleteTag(): void {

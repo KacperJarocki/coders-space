@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PublicationService } from '../services/publication.service';
 import { Publication } from '../interfaces/publication';
 import { JwtServiceService } from '../services/jwt-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-publication-form',
@@ -13,6 +14,7 @@ import { JwtServiceService } from '../services/jwt-service.service';
 })
 
 export class PublicationFormComponent {
+  constructor(private snackBar: MatSnackBar) { }
   private publicationService = inject(PublicationService);
   private jwtService = inject(JwtServiceService)
   publicationForm = new FormGroup({
@@ -42,7 +44,9 @@ export class PublicationFormComponent {
     console.log(publication);
     this.publicationService.createPublication(publication).subscribe({
       next: (response) => {
-        alert('Publication created successfully');
+        this.snackBar.open('Publication created', 'OK', {
+          duration: 2000,
+        })
         this.refresh();
         this.closeForm();
       },

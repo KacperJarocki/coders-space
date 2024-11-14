@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { Client } from '../interfaces/client';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,9 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
+
   ) {
     this.logInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,15 +44,22 @@ export class LoginComponent {
       this.http.post<{ token: string }>(`${this.url}auth/login`, client).subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
+          this.snackBar.open('Login successful', 'OK', {
+            duration: 2000,
+          })
           this.router.navigateByUrl("/");
         },
         error: (error) => {
           console.error('Login failed', error);
-          alert('Login failed: Invalid credentials or network error');
+          this.snackBar.open('Login failed', 'OK', {
+            duration: 2000,
+          });
         }
       });
     } else {
-      alert('Please correct the errors in the form.');
+      this.snackBar.open('Please fill in all fields correctly', 'OK', {
+        duration: 2000,
+      });
     }
   }
 
