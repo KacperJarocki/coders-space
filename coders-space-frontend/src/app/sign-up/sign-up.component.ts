@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  private url: string = "http://backend.localhost/api/";
+  private url: string = "http://backend.localhost/api/v1/";
   signUpForm: FormGroup;
 
   constructor(

@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  private url: string = "http://backend.localhost/api/";
+  private url: string = "http://backend.localhost/api/v1/";
   logInForm: FormGroup;
 
   constructor(
