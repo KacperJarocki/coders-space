@@ -2,7 +2,9 @@
   <app-report [event]="event"/>
   <app-tag-list [event]="event"></app-tag-list> <!-- Display tags -->
   <div class="meta">
-    <span><strong>Author: </strong> {{ clientName.clientName }}</span> <!-- Display client ID -->
+    <span><strong>Author: </strong>
+      <a [routerLink]="['/p', clientName.clientName]">{{ clientName.clientName }}</a>
+    </span> <!-- Display client ID -->
     <span><strong> Created At:</strong> {{ event.createdAt | date:'medium' }}</span> <!-- Display created_at date -->
   </div>
   <p>Date: {{ event.date | date:'medium' }}</p> <!-- Display formatted date -->

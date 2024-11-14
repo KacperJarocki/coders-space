@@ -31,7 +31,7 @@ public class ClientController {
     }
     logger.info("Saving client with name: " + client.getName());
     client.setPassword(encoder.encode(client.getPassword()));
-    emailService.sendVerificationEmail(client, "chuju sprawdzam");
+    client.setEnabled(true);
     clientService.saveClient(client);
     return ResponseEntity.ok().build();
   }

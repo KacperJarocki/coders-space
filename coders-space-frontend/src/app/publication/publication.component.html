@@ -2,7 +2,10 @@
   <app-report [publication]="publication"></app-report>
   <app-tag-list [publication]="publication"></app-tag-list>
   <div class="meta">
-    <span><strong>Author</strong> {{ clientName.clientName }}</span>
+     <span>
+      <strong>Author </strong>
+      <a [routerLink]="['/p', clientName.clientName]">{{ clientName.clientName }}</a>
+    </span>
     <span><strong> Posted on:</strong> {{ publication.createdAt | date:'medium' }}</span>
   </div>
   <h1>{{ publication.title }}</h1>

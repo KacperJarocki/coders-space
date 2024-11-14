@@ -7,10 +7,11 @@ import { JwtServiceService } from '../../services/jwt-service.service';
 import { ClientService } from '../../services/client.service';
 import { ClientName } from '../../interfaces/client';
 import { ReportComponent } from '../../report/report.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentFormComponent, ReactionComponent, ReportComponent],
+  imports: [RouterLink, CommentFormComponent, ReactionComponent, ReportComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
