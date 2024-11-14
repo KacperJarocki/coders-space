@@ -13,6 +13,14 @@ export class JwtServiceService {
   constructor(private snackBar: MatSnackBar, private router: Router) { }
   private userSubject = new BehaviorSubject<string | null>(null); // Holds the current user state
   public user$: Observable<string | null> = this.userSubject.asObservable();
+  private userRole = new BehaviorSubject<string | null>(null); // Holds the current user state
+  public userRole$: Observable<string | null> = this.userRole.asObservable();
+  setRole(role: string): void {
+    this.userRole.next(role);
+  }
+  clearRole(): void {
+    this.userRole.next(null);
+  }
   setUser(user: string): void {
     this.userSubject.next(user);
   }
@@ -67,6 +75,16 @@ export class JwtServiceService {
       return decoded.name;
     } else {
       this.clearUser();
+      return null;
+    }
+  }
+  public getRole(): string | null {
+    const decoded = this.decodeToken();
+    if (decoded && decoded.role) {
+      this.setRole(decoded.role);
+      return decoded.role;
+    } else {
+      this.clearRole();
       return null;
     }
   }

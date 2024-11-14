@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.service.coders.responses.ClientNameResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,8 @@ public class ClientController {
   @Autowired
   ClientService clientService;
   Logger logger = Logger.getLogger(ClientController.class.getName());
+  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+
   @GetMapping("/")
   public ResponseEntity getClients() {
     logger.info("Getting clients");
@@ -25,6 +28,7 @@ public class ClientController {
       return ResponseEntity.badRequest().build();
     }
     logger.info("Saving client with name: " + client.getName());
+    client.setPassword(encoder.encode(client.getPassword()));
     clientService.saveClient(client);
     return ResponseEntity.ok().build();
   }
