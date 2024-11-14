@@ -30,6 +30,7 @@ public class Clients implements UserDetails {
   String email;
   String password;
   ClientType client_type;
+  boolean enabled;
 
   @Override
   public boolean isAccountNonLocked() {
@@ -48,7 +49,7 @@ public class Clients implements UserDetails {
 
   @Override
   public boolean isEnabled() {
-    return true;
+    return enabled;
   }
 
   @Override

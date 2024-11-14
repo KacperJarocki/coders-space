@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS clients (
     name VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    client_type SMALLINT NOT NULL
+    client_type SMALLINT NOT NULL,
+    enabled BOOLEAN NOT NULL
 );
 CREATE TABLE IF NOT EXISTS publications (
     id SERIAL PRIMARY KEY,
