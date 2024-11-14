@@ -6,7 +6,7 @@
     <app-reaction [comment]="comment"></app-reaction>
   <div class="comment-actions">
     @if(isItMine){
-    <app-comment-form [commentData]="comment" (refreshList)="commentChanged()" ></app-comment-form>
+    <app-comment-form [commentData]="comment" [msg]="newMsg"(refreshList)="commentChanged()" ></app-comment-form>
     <button class="remove-button" (click)="remove() ">Remove</button>
     }
   </div>

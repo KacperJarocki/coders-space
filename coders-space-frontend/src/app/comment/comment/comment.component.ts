@@ -21,6 +21,7 @@ export class CommentComponent {
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   clientName: ClientName = { clientName: '' };
   isItMine: boolean = false;
+  newMsg = "Edit Comment";
   constructor(private snackBar: MatSnackBar, private commentService: CommentService, private jwtService: JwtServiceService, private clientService: ClientService) { }
   isItYours(): boolean {
     const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
