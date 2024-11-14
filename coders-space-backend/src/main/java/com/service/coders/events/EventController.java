@@ -11,9 +11,8 @@ public class EventController {
     private  EventService eventService;
     @GetMapping
     public ResponseEntity retrivePublications() {
-        return ResponseEntity.ok(eventService.retriveAllPublications());
+        return ResponseEntity.ok(eventService.getAllEventsOrderedByCreatedAt());
     }
-
     @GetMapping("/{id}")
     public ResponseEntity retrivePublicationById(@RequestParam Integer id) {
         Events event = eventService.retrivePublication(id);

@@ -18,7 +18,8 @@ public class Publications {
   @Column(name="client_id")
   Integer clientId;
   publicationType publication_type;
-  LocalDateTime post_created;
+  @Column(name="created_at")
+  LocalDateTime createdAt;
 }
 
 enum publicationType {

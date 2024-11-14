@@ -3,6 +3,6 @@ export interface Event {
   name: string;
   content: string;
   date: string;
-  created_at: string;
+  createdAt: string;
   client_id: number;
 }

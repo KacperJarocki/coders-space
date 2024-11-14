@@ -2,7 +2,7 @@
 <p>Loading</p>
 }@else if(listState.state ==='success'){
 <section class="result">
-  @for(event of listState.results;track event.id){
+  @for(event of listState.results;track event.createdAt){
   <app-event [event]="event" (refreshList) ="refreshEvents()"></app-event>
   }
 </section>

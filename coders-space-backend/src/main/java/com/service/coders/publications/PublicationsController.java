@@ -12,7 +12,7 @@ public class PublicationsController {
 
   @GetMapping
   public ResponseEntity retrivePublications() {
-    return ResponseEntity.ok(publicationService.retriveAllPublications());
+    return ResponseEntity.ok(publicationService.getAllPublicationsOrderedByCreatedAt());
   }
 
   @GetMapping("/{id}")

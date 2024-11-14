@@ -9,3 +9,4 @@ import java.util.List;
 public interface PublicationsRepository extends JpaRepository<Publications, Integer> {
 List<Publications> findByClientId(Integer clientId);
 }
+1

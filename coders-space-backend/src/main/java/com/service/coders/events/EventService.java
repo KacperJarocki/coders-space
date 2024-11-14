@@ -3,6 +3,7 @@ package com.service.coders.events;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public class EventService {
 
     public Events create(Events events) {
         Events event;
-        events.setCreated_at(LocalDateTime.now());
+        events.setCreatedAt(LocalDateTime.now());
         try {
             logger.info("Creating event" + events);
             event = repository.save(events);
@@ -51,12 +52,14 @@ public class EventService {
         return event;
 
     }
-
+    public List<Events> getAllEventsOrderedByCreatedAt() {
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+    }
     public Events retrivePublication(int id) {
         return repository.findById(id).orElse(null);
     }
 
     public List<Events> retriveAllPublications() {
-        return repository.findAll();
+        return repository.findAllByOrderByCreatedAtAsc();
     }
 }
