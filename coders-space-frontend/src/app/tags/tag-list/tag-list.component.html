@@ -7,7 +7,9 @@
   @for(tag of listState.results;track tag.id){
   <app-tag [tag]="tag" (tagChanged)="refreshTags()"></app-tag>
   }
+  @if(isItMine){
 <button class="toggleButton"(click)="toggleAddTag()">add tag</button>
+  }
 </section>
 }@else if(listState.state ==='error'){
 <div class="error">
