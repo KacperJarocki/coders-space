@@ -1,5 +1,6 @@
 
 <div class="comment-card">
+  <app-report [comment]="comment"></app-report>
   <h1>{{clientName.clientName}}</h1>
   <p class="comment-content">{{ comment.content }}</p>
     <app-reaction [comment]="comment"></app-reaction>

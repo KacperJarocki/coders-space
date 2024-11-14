@@ -1,5 +1,6 @@
 /* Styl sekcji event */
 .event {
+  position: relative;
   border: 1px solid #2C3639;
   padding: 20px;
   background-color: #F2F2F2;

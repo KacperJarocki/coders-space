@@ -6,11 +6,11 @@ import { ReactionComponent } from '../../reaction/reaction/reaction.component';
 import { JwtServiceService } from '../../services/jwt-service.service';
 import { ClientService } from '../../services/client.service';
 import { ClientName } from '../../interfaces/client';
-
+import { ReportComponent } from '../../report/report.component';
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentFormComponent, ReactionComponent],
+  imports: [CommentFormComponent, ReactionComponent, ReportComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })

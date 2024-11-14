@@ -2,9 +2,7 @@ package com.service.coders.reports;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/report")
@@ -15,5 +13,9 @@ public class ReportController {
     @GetMapping
     public ResponseEntity getReports() {
         return ResponseEntity.ok(reportService.getAllReports());
+    }
+    @PostMapping
+    public ResponseEntity createUpdate(@RequestBody Reports reports) {
+        return ResponseEntity.ok(reportService.createReport(reports));
     }
 }

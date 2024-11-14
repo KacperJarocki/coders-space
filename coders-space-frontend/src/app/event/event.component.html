@@ -1,10 +1,11 @@
 <section class="event">
+  <app-report [event]="event"/>
+  <app-tag-list [event]="event"></app-tag-list> <!-- Display tags -->
   <div class="meta">
-    <span><strong>Date:</strong> {{ event.date | date:'medium' }}</span> <!-- Display formatted date -->
-    <span><strong>Created At:</strong> {{ event.createdAt | date:'medium' }}</span> <!-- Display created_at date -->
-    <span><strong>Client Name:</strong> {{ clientName.clientName }}</span> <!-- Display client ID -->
-    <app-tag-list [event]="event"></app-tag-list> <!-- Display tags -->
+    <span><strong>Author: </strong> {{ clientName.clientName }}</span> <!-- Display client ID -->
+    <span><strong> Created At:</strong> {{ event.createdAt | date:'medium' }}</span> <!-- Display created_at date -->
   </div>
+  <p>Date: {{ event.date | date:'medium' }}</p> <!-- Display formatted date -->
   <h1>{{ event.name }}</h1>
   <p>{{ event.content }}</p>
   <app-reaction [event]="event"></app-reaction>

@@ -1,8 +1,6 @@
 package com.service.coders.reports;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,12 +11,13 @@ import java.time.LocalDateTime;
 @Setter
 public class Reports {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
   @Column(name="publication_id")
-  Integer publication_id;
+  Integer publicationId;
   @Column(name="event_id")
-  Integer event_id;
+  Integer eventId;
   @Column(name="comment_id")
-  Integer comment_id;
+  Integer commentId;
   LocalDateTime date;
 }

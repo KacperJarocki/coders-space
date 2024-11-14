@@ -1,4 +1,5 @@
 .comment-card {
+  position: relative;
   background-color: #F9F9F9;
   border: 1px solid #E0E0E0;
   padding: 15px;
