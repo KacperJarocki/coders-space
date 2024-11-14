@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS publications (
     content TEXT NOT NULL,
     client_id INTEGER NOT NULL,
     publication_type SMALLINT NOT NULL,
-    post_created TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     FOREIGN KEY (client_id) REFERENCES clients (id)
 );
 CREATE TABLE IF NOT EXISTS events (
@@ -60,12 +60,11 @@ CREATE TABLE IF NOT EXISTS reactions (
     FOREIGN KEY (comment_id) REFERENCES comments (id)
 );
 CREATE TABLE IF NOT EXISTS reports (
-    client_id INTEGER,
+    id SERIAL PRIMARY KEY,
     publication_id INTEGER,
     event_id INTEGER,
     comment_id INTEGER,
-    content TEXT,
-    FOREIGN KEY (client_id) REFERENCES clients (id),
+    date TIMESTAMP NOT NULL,
     FOREIGN KEY (publication_id) REFERENCES publications (id),
     FOREIGN KEY (event_id) REFERENCES events (id),
     FOREIGN KEY (comment_id) REFERENCES comments (id)
