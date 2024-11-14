@@ -1,4 +1,4 @@
-html, body {
+body, html {
   height: 100%;
   margin: 0;
 }
@@ -6,7 +6,12 @@ html, body {
 .main {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ustawiamy wysokość kontenera */
+  min-height: 100vh; /* Ensures the container takes up the full viewport height */
 }
 
-
+/* The content area that will expand as needed */
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
