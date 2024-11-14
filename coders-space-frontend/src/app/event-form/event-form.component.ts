@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EventService } from '../services/event.service';
 import { JwtServiceService } from '../services/jwt-service.service';
 import { Event } from '../interfaces/event';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-event-form',
@@ -13,7 +14,7 @@ import { Event } from '../interfaces/event';
 })
 export class EventFormComponent {
   eventForm: FormGroup;
-  constructor(private eventService: EventService, private jwtService: JwtServiceService, private fb: FormBuilder) {
+  constructor(private snackBar: MatSnackBar, private eventService: EventService, private jwtService: JwtServiceService, private fb: FormBuilder) {
     this.eventForm = this.fb.group({
       name: [''],
       content: [''],
@@ -36,12 +37,13 @@ export class EventFormComponent {
       console.log('New Event:', newEvent);
       this.eventService.createEvent(newEvent).subscribe({
         next: (response) => {
-          alert('Event created successfully');
           this.closeForm();
           this.refresh();
         },
         error: (error) => {
-          console.error('Event creation failed', error);
+          this.snackBar.open('Event creation failed', 'OK', {
+            duration: 1000,
+          });
         }
       });
     }

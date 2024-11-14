@@ -2,7 +2,7 @@
 <div> Sie nie pobrłalo sie</div>
 } @else {
 <section class="result">
-  @for(publication of PublicationList;track publication.id){
+  @for(publication of PublicationList;track publication.createdAt){
   <app-publication [publication] = "publication"
     (refreshList)="refresh()">
   </app-publication>

@@ -1,0 +1,14 @@
+<div *ngIf="mostReportedItems.length">
+  <h2>Most Reported Items</h2>
+  <ul>
+    <li *ngFor="let item of mostReportedItems">
+      <strong>{{ item.type | titlecase }} ID: {{ item.id }} - Reports: {{ item.count }}</strong>
+      <div *ngIf="item.details">
+        <p *ngIf="item.type === 'publication'">Publication Title: {{ item.details.title }}</p>
+        <p *ngIf="item.type === 'event'">Event Name: {{ item.details.name }}</p>
+        <p *ngIf="item.type === 'comment'">Comment Content: {{ item.details.content }}</p>
+        <button (click)="deleteItem(item)">Delete {{ item.type | titlecase }}</button>
+      </div>
+    </li>
+  </ul>
+</div>

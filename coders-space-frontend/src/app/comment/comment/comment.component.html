@@ -1,6 +1,7 @@
 
 <div class="comment-card">
-  <h1>{{clientName.clientName}}</h1>
+  <app-report [comment]="comment"></app-report>
+  <a [routerLink]="['/p', clientName.clientName]">{{ clientName.clientName }}</a>
   <p class="comment-content">{{ comment.content }}</p>
     <app-reaction [comment]="comment"></app-reaction>
   <div class="comment-actions">

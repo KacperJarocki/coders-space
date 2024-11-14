@@ -10,9 +10,11 @@ import { ReactionComponent } from '../reaction/reaction/reaction.component';
 import { JwtServiceService } from '../services/jwt-service.service';
 import { ClientName } from '../interfaces/client';
 import { ClientService } from '../services/client.service';
+import { ReportComponent } from '../report/report.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-publication',
-  imports: [EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent],
+  imports: [RouterLink, EditPublicationComponent, CommonModule, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent, ReportComponent],
   standalone: true,
   templateUrl: './publication.component.html',
   styleUrls: ['./publication.component.css']

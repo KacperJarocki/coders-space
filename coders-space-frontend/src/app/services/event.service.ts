@@ -20,4 +20,7 @@ export class EventService {
   public deleteEvent(event: Event) {
     return this.http.delete(this.url, { body: event });
   }
+  public getEventById(id: number) {
+    return this.http.get<Event>(`${this.url}/${id}`);
+  }
 }

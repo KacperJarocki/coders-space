@@ -8,6 +8,7 @@ import com.service.coders.clients.Clients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,9 +19,12 @@ public class PublicationService {
   ClientService clientService;
   Logger logger = LoggerFactory.getLogger(PublicationService.class);
 
+  public List<Publications> getAllPublicationsOrderedByCreatedAt() {
+    return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+  }
   public Publications createPublication(Publications publications) {
     Publications publication;
-    publications.setPost_created(LocalDateTime.now());
+    publications.setCreatedAt(LocalDateTime.now());
     try {
       logger.info("Creating publication" + publications);
       publication = repository.save(publications);

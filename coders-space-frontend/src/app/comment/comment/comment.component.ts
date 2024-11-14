@@ -6,11 +6,13 @@ import { ReactionComponent } from '../../reaction/reaction/reaction.component';
 import { JwtServiceService } from '../../services/jwt-service.service';
 import { ClientService } from '../../services/client.service';
 import { ClientName } from '../../interfaces/client';
-
+import { ReportComponent } from '../../report/report.component';
+import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentFormComponent, ReactionComponent],
+  imports: [RouterLink, CommentFormComponent, ReactionComponent, ReportComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
@@ -19,7 +21,7 @@ export class CommentComponent {
   @Output() refreshList: EventEmitter<void> = new EventEmitter<void>();
   clientName: ClientName = { clientName: '' };
   isItMine: boolean = false;
-  constructor(private commentService: CommentService, private jwtService: JwtServiceService, private clientService: ClientService) { }
+  constructor(private snackBar: MatSnackBar, private commentService: CommentService, private jwtService: JwtServiceService, private clientService: ClientService) { }
   isItYours(): boolean {
     const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
     return clientId == this.comment.clientId;
@@ -39,8 +41,9 @@ export class CommentComponent {
   remove(): void {
     this.commentService.deleteComment(this.comment).subscribe({
       next: (response: any) => {
-        console.log('Comment deleted', response);
-        alert('Comment deleted');
+        this.snackBar.open('Comment deleted', 'OK', {
+          duration: 2000,
+        });
         this.commentChanged();
       }
     })

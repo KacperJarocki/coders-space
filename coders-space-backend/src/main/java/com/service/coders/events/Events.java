@@ -3,10 +3,7 @@ package com.service.coders.events;
 import java.time.LocalDateTime;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +17,7 @@ public class Events {
   String name;
   String content;
   LocalDateTime date;
-  LocalDateTime created_at;
+  @Column(name ="created_at")
+  LocalDateTime createdAt;
   int client_id;
 }

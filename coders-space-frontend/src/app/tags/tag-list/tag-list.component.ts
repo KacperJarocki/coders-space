@@ -7,6 +7,7 @@ import { TagService } from '../../services/tag.service';
 import { Tag } from '../../interfaces/tag';
 import { TagComponent } from '../tag/tag.component';
 import { TagFormComponent } from '../tag-form/tag-form.component';
+import { JwtServiceService } from '../../services/jwt-service.service';
 
 @Component({
   selector: 'app-tag-list',
@@ -18,12 +19,18 @@ import { TagFormComponent } from '../tag-form/tag-form.component';
 export class TagListComponent {
   @Input() publication?: Publication;
   @Input() event?: Event;
+  isItMine: boolean = false;
   listState: ComponentListState<TagsPublicationsEvents> = { state: 'idle' };
-  constructor(private tagService: TagService) { }
-
+  constructor(private tagService: TagService, private jwtService: JwtServiceService) { }
+  isItYours(): boolean {
+    const clientId = this.jwtService.getClientIdToShowButton() ?? -1;
+    const clientIdOnEventOrPublication = this.publication?.clientId ?? this.event?.client_id ?? -1;
+    return clientId == clientIdOnEventOrPublication;
+  }
   addTag = false;
   ngOnInit() {
     this.refreshTags();
+    this.isItMine = this.isItYours();
   }
   toggleAddTag() {
     this.addTag = !this.addTag;

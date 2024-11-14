@@ -11,10 +11,12 @@ import { ParticipationComponent } from '../participation/participation.component
 import { JwtServiceService } from '../services/jwt-service.service';
 import { ClientService } from '../services/client.service';
 import { ClientName } from '../interfaces/client';
+import { ReportComponent } from '../report/report.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent, ParticipationComponent],
+  imports: [RouterLink, ReportComponent, CommonModule, EditEventComponent, CommentListComponent, CommentFormComponent, TagListComponent, ReactionComponent, ParticipationComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css'
 })

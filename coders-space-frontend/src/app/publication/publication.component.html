@@ -1,9 +1,12 @@
 <section class="publication {{ publication.publication_type | lowercase }}">
+  <app-report [publication]="publication"></app-report>
+  <app-tag-list [publication]="publication"></app-tag-list>
   <div class="meta">
-    <span><strong>Type:</strong> {{ publication.publication_type }}</span>
-    <span><strong>Client Name:</strong> {{ clientName.clientName }}</span>
-    <span><strong>Posted on:</strong> {{ publication.post_created | date:'medium' }}</span>
-    <app-tag-list [publication]="publication"></app-tag-list>
+     <span>
+      <strong>Author </strong>
+      <a [routerLink]="['/p', clientName.clientName]">{{ clientName.clientName }}</a>
+    </span>
+    <span><strong> Posted on:</strong> {{ publication.createdAt | date:'medium' }}</span>
   </div>
   <h1>{{ publication.title }}</h1>
   <p>{{ publication.content }}</p>

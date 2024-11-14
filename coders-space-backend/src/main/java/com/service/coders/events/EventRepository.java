@@ -2,6 +2,12 @@ package com.service.coders.events;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EventRepository extends JpaRepository<Events,Integer> {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
+public interface EventRepository extends JpaRepository<Events,Integer> {
+    List<Events> findAllByOrderByCreatedAtAsc();
+
+    List<Events> findByDateBetween(LocalDateTime start, LocalDateTime end);
 }

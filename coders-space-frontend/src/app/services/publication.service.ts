@@ -24,4 +24,7 @@ export class PublicationService {
   public getPublicationByClientName(clientName: string) {
     return this.http.get<Publication[]>(`${this.url}/clientname/${clientName}`)
   }
+  getPublicationById(id: number) {
+    return this.http.get<Publication>(`${this.url}/${id}`)
+  }
 }

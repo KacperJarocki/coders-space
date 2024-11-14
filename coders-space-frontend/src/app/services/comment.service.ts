@@ -19,4 +19,7 @@ export class CommentService {
   public deleteComment(comment: Comment) {
     return this.http.delete<Comment>(this.url, { body: comment });
   }
+  public getCommentByid(id: number) {
+    return this.http.get<Comment>(`${this.url}/${id}`);
+  }
 }

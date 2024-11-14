@@ -1,5 +1,6 @@
 package com.service.coders.authentication;
 
+import com.service.coders.email.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,17 @@ public class AuthenticationService {
   @Autowired
   JwtService jwtService;
   BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+  @Autowired
+  EmailService emailService;
+  @Autowired
+  VerificationService verificationService;
 
   public void register(Clients client) {
     logger.info("Registering user with email: " + client.getEmail());
     client.setPassword(encoder.encode(client.getPassword()));
     clientService.saveClient(client);
+    VerificationToken verificationToken = verificationService.createToken(client);
+    emailService.sendVerificationEmail(client, verificationToken.getToken());
   }
 
   public String verify(Clients client) {

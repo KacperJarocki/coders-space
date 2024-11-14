@@ -18,7 +18,10 @@ public class CommentController {
   public ResponseEntity retriveAll() {
     return ResponseEntity.ok(commentService.retrieveAll());
   }
-
+  @GetMapping("/{id}")
+  public ResponseEntity retriveOne(@PathVariable Integer id) {
+    return ResponseEntity.ok(commentService.retrieveById(id));
+  }
   @PutMapping
   public ResponseEntity retriveCommentsOfPublicationOrEvent(@RequestBody Comments comment) {
     List<Comments> comments;
