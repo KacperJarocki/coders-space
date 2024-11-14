@@ -14,7 +14,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.getAllEventsOrderedByCreatedAt());
     }
     @GetMapping("/{id}")
-    public ResponseEntity retrivePublicationById(@RequestParam Integer id) {
+    public ResponseEntity retrivePublicationById(@PathVariable Integer id) {
         Events event = eventService.retrivePublication(id);
         if (event == null) {
             return ResponseEntity.notFound().build();
@@ -22,7 +22,6 @@ public class EventController {
             return ResponseEntity.ok(event);
         }
     }
-
     @PostMapping
     public ResponseEntity createPublications(@RequestBody Events save) {
         Events event = eventService.create(save);

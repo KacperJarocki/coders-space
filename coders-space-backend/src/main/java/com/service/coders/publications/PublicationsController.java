@@ -1,5 +1,7 @@
 package com.service.coders.publications;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +11,15 @@ import org.springframework.web.bind.annotation.*;
 public class PublicationsController {
   @Autowired
   PublicationService publicationService;
+  Logger logger = LoggerFactory.getLogger(PublicationsController.class);
 
   @GetMapping
   public ResponseEntity retrivePublications() {
     return ResponseEntity.ok(publicationService.getAllPublicationsOrderedByCreatedAt());
   }
-
   @GetMapping("/{id}")
-  public ResponseEntity retrivePublicationById(@RequestParam Integer id) {
+  public ResponseEntity retrivePublicationById(@PathVariable Integer id) {
+    logger.info("getting publication  with id {}", id);
     Publications publication = publicationService.retrivePublication(id);
     if (publication == null) {
       return ResponseEntity.notFound().build();
