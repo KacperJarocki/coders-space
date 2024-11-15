@@ -42,7 +42,7 @@ public class ParticipationService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Scheduled(cron = "0 0 8 * * ?")
+    @Scheduled(cron = "0 35 7 * * ?")
     public void sendEmailsToParticipants() {
         LocalDateTime now = LocalDateTime.now();
         logger.info("Today is {}", now);
