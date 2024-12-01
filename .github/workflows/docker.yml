@@ -1,26 +1,19 @@
-name: Build and Publish Docker Images to GHCR
-
 on:
   push:
     branches:
       - main
+    paths:
+      - 'coders-space-backend/**'
+      - 'coders-space-frontend/**'
+      - 'db/**'
 
 jobs:
   build-and-push-backend:
-    if: ${{ github.event.before != '' && steps.check_changes.outputs.backend_changed == 'true' }}
+    if: contains(github.event.commits.*.modified, 'coders-space-backend/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Check if backend changed
-        id: check_changes
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^coders-space-backend/'; then
-            echo "backend_changed=true" >> $GITHUB_ENV
-          else
-            echo "backend_changed=false" >> $GITHUB_ENV
-          fi
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -32,20 +25,11 @@ jobs:
           docker push ghcr.io/$REPO_OWNER/coders-space-backend:latest
 
   build-and-push-frontend:
-    if: ${{ github.event.before != '' && steps.check_changes.outputs.frontend_changed == 'true' }}
+    if: contains(github.event.commits.*.modified, 'coders-space-frontend/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Check if frontend changed
-        id: check_changes
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^coders-space-frontend/'; then
-            echo "frontend_changed=true" >> $GITHUB_ENV
-          else
-            echo "frontend_changed=false" >> $GITHUB_ENV
-          fi
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -57,20 +41,11 @@ jobs:
           docker push ghcr.io/$REPO_OWNER/coders-space-frontend:latest
 
   build-and-push-db:
-    if: ${{ github.event.before != '' && steps.check_changes.outputs.db_changed == 'true' }}
+    if: contains(github.event.commits.*.modified, 'db/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Check if db changed
-        id: check_changes
-        run: |
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^db/'; then
-            echo "db_changed=true" >> $GITHUB_ENV
-          else
-            echo "db_changed=false" >> $GITHUB_ENV
-          fi
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
