@@ -8,6 +8,7 @@ services:
       - "--label-enable"
       - "--interval"
       - "30"
+      - "--rolling-restart"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
@@ -44,7 +45,7 @@ services:
     restart: always
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 2
     labels:
       - "traefik.http.routers.frontend.rule=Host(`localhost`)"
       - "com.centurylinklabs.watchtower.enable=true"
