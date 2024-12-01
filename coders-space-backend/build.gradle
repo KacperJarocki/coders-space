@@ -3,7 +3,9 @@ plugins {
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
 }
-
+springBoot {
+    mainClass = 'com.service.coders.CodersApplication'  // Zastąp nazwą klasy głównej Twojej aplikacji
+}
 group = 'com.service'
 version = '0.0.1-SNAPSHOT'
 

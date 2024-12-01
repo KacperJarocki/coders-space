@@ -1,30 +1,33 @@
+# Etap 1: Builder - Budowanie aplikacji Angular
 FROM --platform=$BUILDPLATFORM node:18 as builder
 
-RUN mkdir /project
-WORKDIR /project
+# Tworzenie katalogu roboczego
+WORKDIR /app
 
+# Instalowanie globalnie Angular CLI
 RUN npm install -g @angular/cli@17
 
+# Kopiowanie package.json i package-lock.json w celu zainstalowania zależności
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --prefer-offline --no-audit --progress=false
 
+# Kopiowanie reszty aplikacji
 COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
 
-FROM builder as dev-envs
+# Budowanie aplikacji Angular w trybie produkcyjnym
+RUN ng build --configuration production
 
-RUN <<EOF
-apt-get update
-apt-get install -y --no-install-recommends git
-EOF
+# Etap 2: Produkcyjny - Uruchamianie aplikacji Angular
+FROM nginx:alpine as production
 
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
+# Usuwanie domyślnej strony Nginx
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=gloursdocker/docker / /
+# Kopiowanie zbudowanej aplikacji Angular do folderu Nginx
+COPY --from=builder /app/dist/coders-space-frontend/browser /usr/share/nginx/html
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
-EXPOSE 4200
+# Eksponowanie portu, na którym działa aplikacja
+EXPOSE 80
+
+# Uruchomienie Nginx
+CMD ["nginx", "-g", "daemon off;"]
