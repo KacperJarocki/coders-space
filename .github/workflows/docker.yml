@@ -14,10 +14,9 @@ jobs:
           github.actor }} --password-stdin
       - name: Build and push backend image
         run: >
-          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase
-          }}/coder-space-backend:latest coder-space-backend
+          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest coder-space-backend
 
-          docker push ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-backend:latest
+          docker push ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest
   build-and-push-frontend:
     runs-on: ubuntu-latest
     steps:
@@ -28,8 +27,7 @@ jobs:
           github.actor }} --password-stdin
       - name: Build and push frontend image
         run: >
-          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase
-          }}/coder-space-frontend:latest coder-space-frontend
+          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest coder-space-frontend
 
           docker push ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest
   build-and-push-db:
