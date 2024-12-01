@@ -1,9 +1,0 @@
-.logo {
-  width: 100px;
-  cursor: pointer; /* Change the cursor to indicate it's clickable */
-  transition: transform 0.3s ease; /* Smooth scaling effect on hover */
-}
-
-.logo:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
-}

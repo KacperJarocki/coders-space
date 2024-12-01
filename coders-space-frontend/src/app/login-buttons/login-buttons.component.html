@@ -1,8 +1,0 @@
-@if(name==null){
-<div class="button-container">
-  <button [routerLink]="['/login']">Login</button>
-  <button [routerLink]="['/sign-up']">Sign-Up</button>
-</div>
-}@else{
-  <button (click)="logout()" [routerLink]="['/login']">Logout</button>
-}
