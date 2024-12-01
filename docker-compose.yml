@@ -2,6 +2,15 @@ volumes:
   postgres-data:
 
 services:
+  watchtower:
+    image: containrrr/watchtower
+    command:
+      - "--label-enable"
+      - "--interval"
+      - "30"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   db:
     container_name: db
     image: ghcr.io/kacperjarocki/coders-space-db:latest
@@ -12,9 +21,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: always
-
   backend:
-    container_name: backend
     image: ghcr.io/kacperjarocki/coders-space-backend:latest
     depends_on:
       - db
@@ -23,18 +30,24 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     restart: always
+    deploy:
+      mode: replicated
+      replicas: 3
     labels:
       - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - "com.centurylinklabs.watchtower.enable=true"
 
   frontend:
-    container_name: frontend
     image: ghcr.io/kacperjarocki/coders-space-frontend:latest
     depends_on:
       - backend
     restart: always
+    deploy:
+      mode: replicated
+      replicas: 3
     labels:
       - "traefik.http.routers.frontend.rule=Host(`localhost`)"
-
+      - "com.centurylinklabs.watchtower.enable=true"
   webserver:
     container_name: webserver
     image: traefik:v3.1
