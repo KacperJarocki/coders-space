@@ -48,6 +48,8 @@ services:
       replicas: 2
     labels:
       - "traefik.http.routers.frontend.rule=Host(`localhost`)"
+      - "traefik.http.services.frontend.loadbalancer.sticky.cookie=true"
+      - "traefik.http.services.frontend.loadbalancer.sticky.cookie.name=myfrontend-session"
       - "com.centurylinklabs.watchtower.enable=true"
   webserver:
     container_name: webserver
