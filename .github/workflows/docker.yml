@@ -1,39 +1,52 @@
 name: Build and Publish Docker Images to GHCR
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build-and-push-backend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Build and push backend image
-        run: >
-          docker build -t ghcr.io/kacperjarocki/coders-space/coder-space-backend:latest coder-space-backend
-          docker push ghcr.io/kacperjarocki/coders-space/coder-space-backend:latest
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$REPO_OWNER/coder-space-backend:latest coder-space-backend
+          docker push ghcr.io/$REPO_OWNER/coder-space-backend:latest
+
   build-and-push-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Build and push frontend image
-        run: >
-          docker build -t ghcr.io/kacperjarocki/coders-space/coder-space-frontend:latest coder-space-frontend
-          docker push ghcr.io/kacperjarocki/coders-space/coder-space-frontend:latest
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$REPO_OWNER/coder-space-frontend:latest coder-space-frontend
+          docker push ghcr.io/$REPO_OWNER/coder-space-frontend:latest
+
   build-and-push-db:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Build and push db image
-        run: >
-          docker build -t ghcr.io/kacperjarocki/coders-space/coder-space-db:latest db
-          docker push ghcr.io/kacperjarocki/coders-space/coder-space-db:latest
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$REPO_OWNER/coder-space-db:latest db
+          docker push ghcr.io/$REPO_OWNER/coder-space-db:latest
