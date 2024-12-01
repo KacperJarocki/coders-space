@@ -14,9 +14,9 @@ jobs:
           github.actor }} --password-stdin
       - name: Build and push backend image
         run: >
-          docker build -t ghcr.io/${{ github.repository }}/coder-space-backend:latest coder-space-backend
+          docker build -t ghcr.io/kacperjarocki/${{ github.repository }}/coder-space-backend:latest coder-space-backend
 
-          docker push ghcr.io/${{ github.repository }}/coder-space-backend:latest
+          docker push ghcr.io//kacperjarocki/${{ github.repository }}/coder-space-backend:latest
   build-and-push-frontend:
     runs-on: ubuntu-latest
     steps:
