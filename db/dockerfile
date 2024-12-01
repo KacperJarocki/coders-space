@@ -1,5 +1,5 @@
 # Użyj oficjalnego obrazu Postgres
-FROM postgres:alpine
+FROM postgres:16-alpine
 
 # Ustaw zmienne środowiskowe (możesz je także nadpisać w Docker Compose)
 ENV POSTGRES_USER=root
