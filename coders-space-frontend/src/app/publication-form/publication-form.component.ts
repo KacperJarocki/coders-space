@@ -14,9 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class PublicationFormComponent {
-  constructor(private snackBar: MatSnackBar) { }
-  private publicationService = inject(PublicationService);
-  private jwtService = inject(JwtServiceService)
+  constructor(private snackBar: MatSnackBar, private publicationService: PublicationService, private jwtService: JwtServiceService) { }
   publicationForm = new FormGroup({
     title: new FormControl(''),
     content: new FormControl(''),
