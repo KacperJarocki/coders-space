@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-   
+
 jobs:
   build-and-push-backend:
     runs-on: ubuntu-latest
@@ -17,8 +17,8 @@ jobs:
 
       - name: Build and push backend image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest coder-space-backend
-          docker push ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest
+          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-backend:latest coder-space-backend
+          docker push ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-backend:latest
 
   build-and-push-frontend:
     runs-on: ubuntu-latest
@@ -31,8 +31,8 @@ jobs:
 
       - name: Build and push frontend image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest coder-space-frontend
-          docker push ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest
+          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-frontend:latest coder-space-frontend
+          docker push ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-frontend:latest
 
   build-and-push-db:
     runs-on: ubuntu-latest
@@ -45,5 +45,5 @@ jobs:
 
       - name: Build and push db image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-db:latest db
-          docker push ghcr.io/${{ github.repository_owner }}/coder-space-db:latest
+          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-db:latest db
+          docker push ghcr.io/${{ github.repository_owner | toLowerCase }}/coder-space-db:latest
