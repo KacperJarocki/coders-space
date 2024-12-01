@@ -77,18 +77,6 @@ CREATE TABLE IF NOT EXISTS reports (
     FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS bages (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS clients_bages (
-    client_id INTEGER NOT NULL,
-    bage_id INTEGER NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES clients (id) ON DELETE CASCADE,
-    FOREIGN KEY (bage_id) REFERENCES bages (id)
-);
-
 CREATE TABLE IF NOT EXISTS participations (
     id SERIAL PRIMARY KEY,
     client_id INTEGER NOT NULL,
