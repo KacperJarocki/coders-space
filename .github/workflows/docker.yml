@@ -1,0 +1,56 @@
+name: Build and Publish Docker Images to GHCR
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'coder-space-backend/**'
+      - 'coder-space-frontend/**'
+      - 'db/**'
+
+jobs:
+  build-and-push-backend:
+    if: ${{ github.event.head_commit.modified && contains(github.event.head_commit.modified, 'coder-space-backend') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push backend image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest coder-space-backend
+          docker push ghcr.io/${{ github.repository_owner }}/coder-space-backend:latest
+
+  build-and-push-frontend:
+    if: ${{ github.event.head_commit.modified && contains(github.event.head_commit.modified, 'coder-space-frontend') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest coder-space-frontend
+          docker push ghcr.io/${{ github.repository_owner }}/coder-space-frontend:latest
+
+  build-and-push-db:
+    if: ${{ github.event.head_commit.modified && contains(github.event.head_commit.modified, 'db') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push db image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/coder-space-db:latest db
+          docker push ghcr.io/${{ github.repository_owner }}/coder-space-db:latest
