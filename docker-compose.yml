@@ -8,7 +8,6 @@ services:
       - "--label-enable"
       - "--interval"
       - "30"
-      - "--rolling-restart"
       - "--stop-timeout"
       - "60s"
     volumes:
