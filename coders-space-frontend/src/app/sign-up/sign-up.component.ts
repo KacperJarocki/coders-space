@@ -34,15 +34,19 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       const { name, email, password } = this.signUpForm.value;
       const client: Client = { id: 0, name, email, password, client_type: '' };
-      this.snackBar.open('U need to Check your email first. Please log in.', 'OK', {
-        duration: 2000,
-        verticalPosition: 'top', // Position at the bottom
-      });
       this.http.post(`${this.url}auth/register`, client).subscribe({
         next: () => {
-          this.router.navigateByUrl('/login');
+          this.snackBar.open('U need to Check your email first. Please log in.', 'OK', {
+            duration: 3000,
+            verticalPosition: 'top', // Position at the bottom
+          });
         },
-        error: (error) => console.log(error)
+        error: (error) => {
+          this.snackBar.open('Email or name already in use.', 'OK', {
+            duration: 3000,
+            verticalPosition: 'top', // Position at the bottom
+          });
+        }
       });
     } else {
       this.snackBar.open('Please fill in all fields correctly', 'OK', {
