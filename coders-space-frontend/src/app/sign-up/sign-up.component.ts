@@ -1,10 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Client } from '../interfaces/client';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+export function passwordStrengthValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value || '';
+    if (!value) return null;
+
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasLowerCase = /[a-z]/.test(value);
+    const hasNumeric = /[0-9]/.test(value);
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+    const isValidLength = value.length >= 8;
+
+    const allValid = hasUpperCase && hasLowerCase && hasNumeric && hasSpecial && isValidLength;
+
+    return allValid
+      ? null
+      : {
+        passwordStrength: {
+          requirements: 'Not Strong Enough',
+        },
+      };
+  };
+}
+
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -25,7 +49,7 @@ export class SignUpComponent {
     this.signUpForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8), passwordStrengthValidator()]],
       confirmPassword: ['', [Validators.required]]
     }, { validator: this.passwordMatchValidator });
   }

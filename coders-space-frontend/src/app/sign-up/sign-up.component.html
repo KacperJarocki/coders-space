@@ -18,6 +18,9 @@
     <div *ngIf="password?.invalid && password?.touched">
       <small *ngIf="password?.errors?.['required']">Password is required.</small>
       <small *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters.</small>
+      <small *ngIf="password?.errors?.['passwordStrength']">
+        {{ password?.errors?.['passwordStrength']?.requirements }}
+      </small>
     </div>
 
     <label for="confirmPassword">Confirm Password</label>
@@ -25,6 +28,9 @@
     <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
       <small *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required.</small>
       <small *ngIf="signUpForm.errors?.['passwordMismatch']">Passwords do not match.</small>
+      <small *ngIf="password?.errors?.['passwordStrength']">
+        {{ password?.errors?.['passwordStrength']?.requirements }}
+      </small>
     </div>
 
     <button type="submit">Sign Up</button>
