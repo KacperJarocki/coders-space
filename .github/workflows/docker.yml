@@ -17,6 +17,7 @@ jobs:
       - name: Build and push backend image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          COMMIT_HASH=${{ github.sha }}
           docker build -t ghcr.io/$REPO_OWNER/coders-space-backend:$COMMIT_HASH coders-space-backend
           docker push ghcr.io/$REPO_OWNER/coders-space-backend:$COMMIT_HASH
 
@@ -32,6 +33,7 @@ jobs:
       - name: Build and push frontend image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          COMMIT_HASH=${{ github.sha }}
           docker build -t ghcr.io/$REPO_OWNER/coders-space-frontend:$COMMIT_HASH coders-space-frontend
           docker push ghcr.io/$REPO_OWNER/coders-space-frontend:$COMMIT_HASH
 
@@ -47,5 +49,6 @@ jobs:
       - name: Build and push db image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          COMMIT_HASH=${{ github.sha }}
           docker build -t ghcr.io/$REPO_OWNER/coders-space-db:$COMMIT_HASH db
           docker push ghcr.io/$REPO_OWNER/coders-space-db:$COMMIT_HASH
