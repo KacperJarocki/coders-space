@@ -1,4 +1,3 @@
-
 on:
   push:
     branches:
@@ -10,6 +9,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set short commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -17,15 +21,19 @@ jobs:
       - name: Build and push backend image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          COMMIT_HASH=$(echo "${{ github.sha}}")
-          docker build -t ghcr.io/$REPO_OWNER/coders-space-backend:$COMMIT_HASH coders-space-backend
-          docker push ghcr.io/$REPO_OWNER/coders-space-backend:$COMMIT_HASH
+          docker build -t ghcr.io/$REPO_OWNER/coders-space-backend:${{ env.COMMIT_HASH }} coders-space-backend
+          docker push ghcr.io/$REPO_OWNER/coders-space-backend:${{ env.COMMIT_HASH }}
 
   build-and-push-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set short commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -33,15 +41,19 @@ jobs:
       - name: Build and push frontend image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          COMMIT_HASH=$(echo "${{ github.sha}}")
-          docker build -t ghcr.io/$REPO_OWNER/coders-space-frontend:$COMMIT_HASH coders-space-frontend
-          docker push ghcr.io/$REPO_OWNER/coders-space-frontend:$COMMIT_HASH
+          docker build -t ghcr.io/$REPO_OWNER/coders-space-frontend:${{ env.COMMIT_HASH }} coders-space-frontend
+          docker push ghcr.io/$REPO_OWNER/coders-space-frontend:${{ env.COMMIT_HASH }}
 
   build-and-push-db:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set short commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -49,6 +61,5 @@ jobs:
       - name: Build and push db image
         run: |
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          COMMIT_HASH=$(echo "${{ github.sha}}")
-          docker build -t ghcr.io/$REPO_OWNER/coders-space-db:$COMMIT_HASH db
-          docker push ghcr.io/$REPO_OWNER/coders-space-db:$COMMIT_HASH
+          docker build -t ghcr.io/$REPO_OWNER/coders-space-db:${{ env.COMMIT_HASH }} db
+          docker push ghcr.io/$REPO_OWNER/coders-space-db:${{ env.COMMIT_HASH }}
