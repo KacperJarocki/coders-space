@@ -63,3 +63,15 @@ jobs:
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           docker build -t ghcr.io/$REPO_OWNER/coders-space-db:${{ env.COMMIT_HASH }} db
           docker push ghcr.io/$REPO_OWNER/coders-space-db:${{ env.COMMIT_HASH }}
+  Trigger-Workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Repo B Workflow
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.REPO_B_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"event_type": "docker_image_published", "client_payload": { "commit_sha": "${{ github.sha }}" }}' \
+          https://api.github.com/repos/$REPO_OWNER/coders-space-infrastructure/dispatches
+
