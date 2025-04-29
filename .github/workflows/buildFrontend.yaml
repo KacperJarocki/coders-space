@@ -1,0 +1,43 @@
+name: Build Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "coders-space-frontend/**"
+
+jobs:
+  build-and-push-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set short commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
+
+      - name: Docker login
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push frontend
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$REPO_OWNER/coders-space-frontend:${{ env.COMMIT_HASH }} coders-space-frontend
+          docker push ghcr.io/$REPO_OWNER/coders-space-frontend:${{ env.COMMIT_HASH }}
+
+      - name: Trigger Infrastructure Repo
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.REPO_B_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "event_type": "docker_image_published",
+              "client_payload": {
+                "commit_sha": "${{ github.sha }}",
+                "container_name": "coders-space-frontend",
+                "image_tag": "${{ env.COMMIT_HASH }}"
+                "app_name": app1
+              }
+            }' \
+            https://api.github.com/repos/$REPO_OWNER/infrastructure/dispatches
