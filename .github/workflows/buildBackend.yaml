@@ -36,7 +36,7 @@ jobs:
               "client_payload": {
                 "commit_sha": "${{ github.sha }}",
                 "container_name": "coders-space-backend",
-                "image_tag": "${{ env.COMMIT_HASH }}"
+                "image_tag": "${{ env.COMMIT_HASH }}",
                 "app_name": app1
               }
             }' \
